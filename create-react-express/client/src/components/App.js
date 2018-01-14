@@ -18,6 +18,7 @@ import Terms from './terms';
 class App extends Component {
   render() {
     return (
+        <Header />
 
     );
   }
