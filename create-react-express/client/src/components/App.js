@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Header from './cardheader';
 import Body from './cardbody';
 import Agreement from './agreement';

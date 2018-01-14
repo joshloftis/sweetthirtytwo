@@ -3,12 +3,13 @@
   }
   
   .App-logo {
-    height: 80px;
+    height: 40px;
+    float: left;
   }
   
   .App-header {
-    background-color: #222;
-    height: 150px;
+    background-color: grey;
+    height: 40px;
     padding: 20px;
     color: white;
   }
@@ -17,3 +18,15 @@
     font-size: large;
   }
   
+  .title {
+      align-items: center;
+  }
+
+  h2 {
+      display: inline;
+  }
+
+  .addcustomer {
+      display: inline;
+      
+  }
