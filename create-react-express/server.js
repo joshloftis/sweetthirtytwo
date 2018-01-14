@@ -30,9 +30,18 @@ const resolvers = {
 
 const PORT = process.env.PORT || 4000;
 const app = express();
+app.use(morgan('dev'));
 const schema = makeExecutableSchema({ typeDefs, resolvers });
 app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines';
+
+// Setting up mongoose
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI, {
+  useMongoClient: true,
+});
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === 'production') {
