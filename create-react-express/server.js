@@ -1,41 +1,28 @@
+const { graphql } = require('graphql');
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
-const { makeExecutableSchema } = require('graphql-tools');
-
-const books = [
-  {
-    title: "Harry Potter and the Sorcerer's stone",
-    author: 'J.K. Rowling',
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
-  },
-];
-
-// The GraphQL schema in string form
-const typeDefs = `
-  type Query { books: [Book] }
-  type Book { title: String, author: String }
-`;
-
-// The resolvers
-const resolvers = {
-  Query: { books: () => books },
-};
+const Schema = require('./graphql/schema');
+const graphQLHTTP = require('express-graphql');
 
 const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(morgan('dev'));
-const schema = makeExecutableSchema({ typeDefs, resolvers });
-app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
-app.use('/graphiql', graphiqlExpress({ endpointURL: '/graphql' }));
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines';
+const query = 'query { todos { id, title, completed } }';
+graphql(Schema, query).then((result) => {
+  console.log(JSON.stringify(result, null, ' '));
+});
+
+app.use('/', graphQLHTTP({
+  schema: Schema,
+  pretty: true,
+  graphiql: true,
+}));
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/suite_thirty_two';
 
 // Setting up mongoose
 mongoose.Promise = Promise;
