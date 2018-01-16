@@ -1,8 +1,5 @@
-const mongoose = require('mongoose');
-const Owner = require('../models/Owner');
-
-const { Schema } = mongoose;
 const graphql = require('graphql');
+const Owner = require('../models/Owner');
 
 const {
   GraphQLObjectType,
@@ -15,7 +12,7 @@ const {
 } = graphql;
 
 const OwnerType = new GraphQLObjectType({
-  name: 'user',
+  name: 'owner',
   fields: () => ({
     _id: {
       type: GraphQLID,
@@ -45,20 +42,7 @@ const OwnerType = new GraphQLObjectType({
 });
 
 const promiseListOwners = () => new Promise((resolve, reject) => {
-  Owner.find((err, owner) => {
-    if (err) reject(err);
-    else resolve(owner);
-  });
-});
-
-const QueryType = new GraphQLObjectType({
-  name: 'Query',
-  fields: () => ({
-    owners: {
-      type: new GraphQLList(OwnerType),
-      resolve: () => promiseListOwners(),
-    },
-  }),
+  Owner.find((err, owner) => ((err) ? reject(err) : resolve(owner)));
 });
 
 const MutationAddOwner = {
@@ -103,6 +87,16 @@ const MutationAddOwner = {
     });
   },
 };
+
+const QueryType = new GraphQLObjectType({
+  name: 'Query',
+  fields: () => ({
+    owners: {
+      type: new GraphQLList(OwnerType),
+      resolve: () => promiseListOwners(),
+    },
+  }),
+});
 
 const MutationType = new GraphQLObjectType({
   name: 'Mutation',
