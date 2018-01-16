@@ -1,4 +1,3 @@
-const { graphql } = require('graphql');
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -10,11 +9,6 @@ const graphQLHTTP = require('express-graphql');
 const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(morgan('dev'));
-
-const query = 'query { todos { id, title, completed } }';
-graphql(Schema, query).then((result) => {
-  console.log(JSON.stringify(result, null, ' '));
-});
 
 app.use('/', graphQLHTTP({
   schema: Schema,

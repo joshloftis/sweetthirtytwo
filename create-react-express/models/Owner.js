@@ -42,5 +42,5 @@ OwnerSchema.methods.setFullName = function setFullNameOfOwner() {
   return this.fullName;
 };
 
-const Owner = mongoose.model('User', OwnerSchema);
+const Owner = mongoose.model('Owner', OwnerSchema);
 module.exports = Owner;

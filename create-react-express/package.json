@@ -25,7 +25,6 @@
     "graphql": "^0.12.3",
     "graphql-tools": "^2.18.0",
     "mongoose": "^4.13.9",
-    "moongoose": "^0.0.5",
     "morgan": "^1.9.0"
   }
 }

@@ -24,7 +24,7 @@ accepts@~1.3.3:
     mime-types "~2.1.11"
     negotiator "0.6.1"
 
-ajv@^4.1.1, ajv@^4.9.1:
+ajv@^4.9.1:
   version "4.11.8"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-4.11.8.tgz#82ffb02b29e662ae53bdc20af15947706739c536"
   dependencies:
@@ -189,10 +189,6 @@ block-stream@*:
 bluebird@3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
-
-bluebird@^3.4.0, bluebird@~3.5.0:
-  version "3.5.1"
-  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
 body-parser@^1.18.2:
   version "1.18.2"
@@ -1146,7 +1142,7 @@ mongodb-core@2.1.18:
     bson "~1.0.4"
     require_optional "~1.0.0"
 
-mongodb@2.2.34, mongodb@^2.2.6:
+mongodb@2.2.34:
   version "2.2.34"
   resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-2.2.34.tgz#a34f59bbeb61754aec432de72c3fe21526a44c1a"
   dependencies:
@@ -1171,15 +1167,6 @@ mongoose@^4.13.9:
     muri "1.3.0"
     regexp-clone "0.0.1"
     sliced "1.0.1"
-
-moongoose@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/moongoose/-/moongoose-0.0.5.tgz#85c4ad2a82bbf8b8cf830a767827899ee36857b3"
-  dependencies:
-    ajv "^4.1.1"
-    bluebird "^3.4.0"
-    mongodb "^2.2.6"
-    streamz "^1.5.2"
 
 morgan@^1.9.0:
   version "1.9.0"
@@ -1704,12 +1691,6 @@ stream-combiner@~0.0.4:
 stream-shift@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.0.tgz#d5c752825e5367e786f78e18e445ea223a155952"
-
-streamz@^1.5.2:
-  version "1.8.5"
-  resolved "https://registry.yarnpkg.com/streamz/-/streamz-1.8.5.tgz#ecfb68db7b6a455f2ab1a3c8ff3c2b9dd6f81ccc"
-  dependencies:
-    bluebird "~3.5.0"
 
 string-length@^1.0.0:
   version "1.0.1"
