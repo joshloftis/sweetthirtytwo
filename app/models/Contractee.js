@@ -5,6 +5,7 @@ const ContracteeSchema = new Schema({
   contract_id: {
     type: Number,
     required: true,
+    default: Date.now,
   },
   first_name: {
     type: String,
@@ -22,11 +23,6 @@ const ContracteeSchema = new Schema({
   address: {
     type: String,
   },
-  dependency: [
-    {
-      type: String,
-    },
-  ],
   created_at: {
     type: Date,
     default: Date.now,
@@ -34,10 +30,12 @@ const ContracteeSchema = new Schema({
   completed: {
     type: Boolean,
     required: true,
+    default: false,
   },
   status: {
     type: Boolean,
     required: true,
+    default: false,
   },
   business: {
     type: Schema.Types.ObjectId,

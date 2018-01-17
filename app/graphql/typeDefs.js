@@ -7,14 +7,16 @@ const typeDefs = [`
     owner: Owner
   }
   type Contractee {
-    _id: String
-    contract_id: Int
+    _id: String,
+    contract_id: String
     first_name: String
     last_name: String
     email: String
     address: String
-    dependency: [String]
     created_at: Date
+    completed: Boolean
+    status: Boolean
+    business: Business
   }
   type Owner {
     _id: String
@@ -50,10 +52,16 @@ const typeDefs = [`
     getBusinesses: [Business]
     getOwner(_id: String, firstName: String, lastName: String, username: String, email: String): Owner
     getAllOwners: [Owner]
+    getUsers: [User]
+    getUser(_id: String): User
+    getContractee(_id: String): Contractee
+    getContractees: [Contractee]
   }
   type Mutation {
     addOwner(firstName: String, lastName: String, username: String, password: String, email: String): Owner
     addBusiness(name: String, logo: String, owner: String): Business
+    addUser(firstName: String, lastName: String, username: String, password: String, email: String, business: String): User
+    addContractee(first_name: String, last_name: String, email: String, address: String, business: String): Contractee
   }
   schema {
     query: Query

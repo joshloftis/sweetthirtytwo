@@ -26,6 +26,18 @@ const resolvers = {
       return result;
     }),
   },
+  User: {
+    business: async ({ business }) => db.Business.findOne(ObjectId(business), (err, result) => {
+      if (err) throw err;
+      return result;
+    }),
+  },
+  Contractee: {
+    business: async ({ business }) => db.Business.findOne(ObjectId(business), (err, result) => {
+      if (err) throw err;
+      return result;
+    }),
+  },
   Query: {
     getOwner: async (root, { _id }) => db.Owner.findOne(ObjectId(_id), (err, owner) => {
       if (err) throw err;
@@ -38,6 +50,22 @@ const resolvers = {
     getBusiness: async (root, { _id }) => db.Business.findOne(ObjectId(_id), (err, business) => {
       if (err) throw err;
       return business;
+    }),
+    getUser: async (root, { _id }) => db.User.findOne(ObjectId(_id), (err, user) => {
+      if (err) throw err;
+      return user;
+    }),
+    getUsers: async (root, args) => db.User.find({}, (err, users) => {
+      if (err) throw err;
+      return users;
+    }),
+    getContractee: async (root, { _id }) => db.Contractee.findOne(ObjectId(_id), (err, owner) => {
+      if (err) throw err;
+      return owner;
+    }),
+    getContractees: async (root, args) => db.Contractee.find({}, (err, owners) => {
+      if (err) throw err;
+      return owners;
     }),
   },
   Mutation: {
@@ -53,6 +81,20 @@ const resolvers = {
       return db.Business.findOne({ _id: res._id }, (err, business) => {
         if (err) throw err;
         return business;
+      });
+    },
+    addUser: async (root, args, conext, info) => {
+      const res = await db.User.create(args);
+      return db.User.findOne({ _id: res._id }, (err, user) => {
+        if (err) throw err;
+        return user;
+      });
+    },
+    addContractee: async (root, args, conext, info) => {
+      const res = await db.Contractee.create(args);
+      return db.Contractee.findOne({ _id: res._id }, (err, contractee) => {
+        if (err) throw err;
+        return contractee;
       });
     },
   },
