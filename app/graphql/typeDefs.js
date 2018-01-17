@@ -28,7 +28,8 @@ const typeDefs = [`
     created_at: Date
   }
   type PaymentContract {
-    contract_id: String
+    _id: String
+    contractee: Contractee
     total: Int
     fees: Int
     down_payment: Int
@@ -56,12 +57,15 @@ const typeDefs = [`
     getUser(_id: String): User
     getContractee(_id: String): Contractee
     getContractees: [Contractee]
+    getPaymentContract(_id: String): PaymentContract
+    getPaymentContracts: [PaymentContract]
   }
   type Mutation {
     addOwner(firstName: String, lastName: String, username: String, password: String, email: String): Owner
     addBusiness(name: String, logo: String, owner: String): Business
     addUser(firstName: String, lastName: String, username: String, password: String, email: String, business: String): User
     addContractee(first_name: String, last_name: String, email: String, address: String, business: String): Contractee
+    addPaymentContract(contractee: String, total: Int, fees: Int, down_payment: Int, insurance: Int, range: Int, monthly_payment: Int, terms: String): PaymentContract
   }
   schema {
     query: Query

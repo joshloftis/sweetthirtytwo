@@ -38,6 +38,12 @@ const resolvers = {
       return result;
     }),
   },
+  PaymentContract: {
+    contractee: async ({ contractee }) => db.Contractee.findOne(ObjectId(contractee), (err, result) => {
+      if (err) throw err;
+      return result;
+    }),
+  },
   Query: {
     getOwner: async (root, { _id }) => db.Owner.findOne(ObjectId(_id), (err, owner) => {
       if (err) throw err;
@@ -64,6 +70,14 @@ const resolvers = {
       return owner;
     }),
     getContractees: async (root, args) => db.Contractee.find({}, (err, owners) => {
+      if (err) throw err;
+      return owners;
+    }),
+    getPaymentContract: async (root, { _id }) => db.PaymentContract.findOne(ObjectId(_id), (err, owner) => {
+      if (err) throw err;
+      return owner;
+    }),
+    getPaymentContracts: async (root, args) => db.PaymentContract.find({}, (err, owners) => {
       if (err) throw err;
       return owners;
     }),
@@ -95,6 +109,15 @@ const resolvers = {
       return db.Contractee.findOne({ _id: res._id }, (err, contractee) => {
         if (err) throw err;
         return contractee;
+      });
+    },
+    addPaymentContract: async (root, args, conext, info) => {
+      const res = await db.PaymentContract.create(args);
+      const payment = res.getMonthlyPayment();
+      await res.update({ $set: { monthly_payment: payment } });
+      return db.PaymentContract.findOne({ _id: res._id }, (err, contract) => {
+        if (err) throw err;
+        return contract;
       });
     },
   },

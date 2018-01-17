@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const PaymentSchema = new Schema({
-  contract_id: {
+  contractee: {
     type: Schema.Types.ObjectId,
     ref: 'Contractee',
     required: true,
@@ -29,13 +29,17 @@ const PaymentSchema = new Schema({
   },
   monthly_payment: {
     type: Number,
-    required: true,
   },
   terms: {
     type: String,
     required: true,
   },
 });
+
+PaymentSchema.methods.getMonthlyPayment = function monthly() {
+  this.monthly_payment = ((this.total + this.fees) - this.down_payment - this.insurance) / this.range;
+  return this.monthly_payment;
+};
 
 const PaymentContract = mongoose.model('PaymentContract', PaymentSchema);
 
