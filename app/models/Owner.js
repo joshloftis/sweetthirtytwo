@@ -30,17 +30,11 @@ const OwnerSchema = new Schema({
     unique: true,
     match: [/.+\@.+\..+/, 'Please enter a valid e-mail address'],
   },
-  userCreated: {
+  created_at: {
     type: Date,
     default: Date.now,
   },
-  fullName: String,
 });
-
-OwnerSchema.methods.setFullName = function setFullNameOfOwner() {
-  this.fullName = `${this.firstName} ${this.lastName}`;
-  return this.fullName;
-};
 
 const Owner = mongoose.model('Owner', OwnerSchema);
 module.exports = Owner;

@@ -30,7 +30,7 @@ const UserSchema = new Schema({
     unique: true,
     match: [/.+\@.+\..+/, 'Please enter a valid e-mail address'],
   },
-  userCreated: {
+  created_at: {
     type: Date,
     default: Date.now,
   },
@@ -39,13 +39,7 @@ const UserSchema = new Schema({
     ref: 'Business',
     required: true,
   },
-  fullName: String,
 });
-
-UserSchema.methods.setFullName = function setFullNameOfUser() {
-  this.fullName = `${this.firstName} ${this.lastName}`;
-  return this.fullName;
-};
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;

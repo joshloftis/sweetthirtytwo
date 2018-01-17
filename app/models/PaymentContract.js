@@ -2,6 +2,11 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const PaymentSchema = new Schema({
+  contract_id: {
+    type: Schema.Types.ObjectId,
+    ref: 'Contractee',
+    required: true,
+  },
   total: {
     type: Number,
     required: true,
