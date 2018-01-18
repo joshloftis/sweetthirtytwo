@@ -10,7 +10,8 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(morgan('dev'));
 
-app.use('/', graphQLHTTP({
+app.use('/graphql', bodyParser.json(), graphQLHTTP({ Schema }));
+app.use('/graphiql', graphQLHTTP({
   schema: Schema,
   pretty: true,
   graphiql: true,
