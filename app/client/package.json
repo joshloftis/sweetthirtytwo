@@ -11,6 +11,7 @@
     "react": "^15.4.2",
     "react-apollo": "^1.1.2",
     "react-dom": "^15.4.2",
+    "react-router": "^4.2.0",
     "react-router-dom": "^4.0.0",
     "subscriptions-transport-ws": "^0.7.3"
   },
