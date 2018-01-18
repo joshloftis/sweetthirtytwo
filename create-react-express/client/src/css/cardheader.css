@@ -1,40 +1,29 @@
-.App {
+.cardheader {
+    background: white;
+    color: blue;
+    width: 80%;
+    height: 5%;
+    margin-left: 20%;
     text-align: center;
-  }
-  
-  .App-logo {
-    height: 30px;
+    border-style: solid;
+    border-color:grey;
+    border-width: 1px;
+    font-family: 'Raleway', sans-serif;
+}
+.backbtn {
     float: left;
-    margin-right: 3%;
+    margin-left: 2%;
+}
+
+.b--black-10 {
+    border-color: rgba(0, 0, 0, .1);
   }
 
-  .App-logo1 {
-    height: 30px;
-    float: left;
-    margin-right: 3%;
-    margin-top: .5%;
-  }
-  
-  .App-header {
-    background-color: grey;
-    height: 30px;
-    padding: 20px;
-    color: white;
-  }
-  
-  .App-intro {
-    font-size: large;
-  }
-  
-  .title {
-      align-items: center;
+  .br3 {
+    border-radius: .5rem;
   }
 
-  h2 {
-      display: inline;
-  }
-
-  .addcustomer {
-      float: right;
-      margin-top: .5%;
-  }
+  .ba {
+    border-style: solid;
+    border-width: 1px;
+}
