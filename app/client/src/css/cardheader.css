@@ -2,12 +2,8 @@
     background: white;
     color: blue;
     width: 80%;
-    height: 5%;
     margin-left: 20%;
     text-align: center;
-    border-style: solid;
-    border-color:grey;
-    border-width: 1px;
     font-family: 'Raleway', sans-serif;
 }
 .backbtn {
@@ -27,3 +23,4 @@
     border-style: solid;
     border-width: 1px;
 }
+

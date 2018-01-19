@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './navheader';
-import Cheader from './cardheader';
+import Cardheader from './cardheader';
 import Cardbody from './cardbody';
 import Agreement from './agreement';
 import Button from './cardbutton';
@@ -11,6 +11,7 @@ import Slider from './slider';
 import Table from './table';
 import Terms from './terms';
 import Cardlayout from './cardlayout';
+import Avatar from './avatar';
 import '../css/app.css'
 
 
@@ -30,7 +31,8 @@ class App extends Component {
     return (
       <div>
         <Header />
-          <Cheader />
+        <Avatar />
+          <Cardheader />
             <div className="grid">
             <div className="col">
               <Cardbody />
