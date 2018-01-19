@@ -13,12 +13,14 @@
 }
 
 .upperleftlogo {
-    width: 15%;
+    width: 17%;
     height: 30%;
     float: left;
-    padding-left: 5%;
+    padding-left: 1.5%;
+    padding-right:1.5%;
     padding-top: 2.5%;
     padding-bottom: 2.5%;
+    text-align: center;
 }
 
 
