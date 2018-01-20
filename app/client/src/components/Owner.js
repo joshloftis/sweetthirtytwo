@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
 
 const Owner = ({ data: { loading, error, getAllOwners } }) => {
   if (loading) {
@@ -23,5 +24,9 @@ export const OwnerQuery = gql`
     }
   }
 `;
+
+Owner.propTypes = {
+  data: PropTypes.func.isRequired,
+};
 
 export default graphql(OwnerQuery)(Owner);

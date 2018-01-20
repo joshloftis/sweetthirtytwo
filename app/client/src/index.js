@@ -16,21 +16,17 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-class Root extends React.Component {
-  render() {
-    return (
-      <ApolloProvider client={client}>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/signup" component={SignUp} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/suite32" component={App} />
-            <Route component={NotFound} />
-          </Switch>
-        </BrowserRouter>
-      </ApolloProvider>
-    );
-  }
-}
+const Root = () => (
+  <ApolloProvider client={client}>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/suite32" component={App} />
+        <Route component={NotFound} />
+      </Switch>
+    </BrowserRouter>
+  </ApolloProvider>
+);
 
 ReactDOM.render(<Root />, document.getElementById('root'));
