@@ -1,13 +1,17 @@
-
 .b--black-10 {
     border-color: rgba(0, 0, 0, .1);
-  }
+}
 
-  .br3 {
+.tooth {
+    height: 100px;
+    width: 100px;
+}
+
+.br3 {
     border-radius: .5rem;
-  }
+}
 
-  .ba {
+.ba {
     border-style: solid;
     border-width: 1px;
 }
@@ -17,12 +21,8 @@
     height: 30%;
     float: left;
     padding-left: 1.5%;
-    padding-right:1.5%;
+    padding-right: 1.5%;
     padding-top: 2.5%;
-    padding-bottom: 2.5%;
+    padding-bottom: 830PX;
     text-align: center;
 }
-
-
-
-
