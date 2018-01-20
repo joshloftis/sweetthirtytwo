@@ -1,5 +1,4 @@
 import React from 'react';
-import App from './App';
 import '../css/cardheader.css';
 
 const Cardheader = props =>

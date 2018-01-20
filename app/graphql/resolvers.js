@@ -112,13 +112,13 @@ const resolvers = {
       });
     },
     addPaymentContract: async (root, args, conext, info) => {
-      const res = await db.PaymentContract.create(args);
-      const payment = res.getMonthlyPayment();
-      await res.update({ $set: { monthly_payment: payment } });
-      return db.PaymentContract.findOne({ _id: res._id }, (err, contract) => {
-        if (err) throw err;
-        return contract;
-      });
+      // const res = await db.PaymentContract.create(args);
+      // const payment = res.getMonthlyPayment();
+      // await res.update({ $set: { monthly_payment: payment } });
+      const res = new db.PaymentContract(args);
+      res.monthly_payment = res.getMonthlyPayment();
+      await res.save();
+      return res;
     },
   },
 };

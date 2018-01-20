@@ -1,20 +1,21 @@
 const express = require('express');
-const path = require('path');
 const mongoose = require('mongoose');
+const { graphqlExpress, graphiqlExpress } = require('graphql-server-express');
+const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const Schema = require('./graphql/schema');
-const graphQLHTTP = require('express-graphql');
+const cors = require('cors');
+const schema = require('./graphql/schema');
 
 const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(morgan('dev'));
 
-app.use('/graphql', bodyParser.json(), graphQLHTTP({ Schema }));
-app.use('/graphiql', graphQLHTTP({
-  schema: Schema,
-  pretty: true,
-  graphiql: true,
+app.use('*', cors({ origin: 'http://localhost:3000' }));
+
+app.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
+app.use('/graphiql', graphiqlExpress({
+  endpointURL: '/graphql',
 }));
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/suite_thirty_two';

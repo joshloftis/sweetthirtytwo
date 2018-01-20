@@ -12,12 +12,11 @@ import Table from './table';
 import Terms from './terms';
 import Cardlayout from './cardlayout';
 import Avatar from './avatar';
-import '../css/app.css'
-
+import Owner from './Owner';
+import '../css/app.css';
 
 
 class App extends Component {
-
   // state = {
   //   cardbody: [
   //       {
@@ -32,21 +31,22 @@ class App extends Component {
       <div>
         <Header />
         <Avatar />
-          <Cardheader />
-            <div className="grid">
-            <div className="col">
-              <Cardbody />
-              <Cardbody />
-              </div>
-              <div className="col">
-              <Cardbody />
-              <Cardbody />
-              </div>
-              <div className="col">
-              <Cardbody />
-              <Cardbody />
-              </div>
-            </div>
+        <Owner />
+        <Cardheader />
+        <div className="grid">
+          <div className="col">
+            <Cardbody />
+            <Cardbody />
+          </div>
+          <div className="col">
+            <Cardbody />
+            <Cardbody />
+          </div>
+          <div className="col">
+            <Cardbody />
+            <Cardbody />
+          </div>
+        </div>
       </div>
     );
   }
