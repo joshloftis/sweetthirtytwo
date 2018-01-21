@@ -132,3 +132,15 @@
     display: initial;
 }
 /*===================================*/
+colorsplit {
+    background: #fff;
+}
+
+.colorsplit:hover {
+    background: linear-gradient(to top, white 57%, coral 43%);
+    background: -o-linear-gradient(to bottom, white 60%, coral 40%);
+    background: -moz-linear-gradient(to bottom, white 60%, coral 40%);
+    background: -webkit-linear-gradient(to bottom, white 60%, coral 40%);
+    background: -ms-linear-gradient(to bottom, white 60%, coral 40%);
+}
+
