@@ -81,7 +81,7 @@
 }
 
 .f4 {
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 .f6 {
@@ -102,3 +102,33 @@
         padding: 2rem;
     }
 }
+
+/*===================================*/
+
+.viz img {
+    display: none;
+}
+
+.viz h5 {
+    display: none;
+}
+
+.viz p {
+    display: none;
+}
+
+
+
+/*===================================*/
+.viz:hover img {
+    display: initial;
+}
+
+.viz:hover h5 {
+    display: initial;
+}
+
+.viz:hover p {
+    display: initial;
+}
+/*===================================*/
