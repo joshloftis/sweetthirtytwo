@@ -1,5 +1,5 @@
 import React from 'react';
-import App from './App';
+//import App from './App';
 import '../css/avatar.css';
 
 const Avatar = props => 

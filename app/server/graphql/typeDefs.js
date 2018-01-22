@@ -4,7 +4,7 @@ const typeDefs = [`
     _id: String
     name: String
     logo: String
-    owner: Owner
+    user: User
   }
   type Contractee {
     _id: String,
@@ -17,15 +17,6 @@ const typeDefs = [`
     completed: Boolean
     status: Boolean
     business: Business
-  }
-  type Owner {
-    _id: String
-    firstName: String
-    lastName: String
-    username: String
-    password: String
-    email: String
-    created_at: Date
   }
   type PaymentContract {
     _id: String
@@ -43,16 +34,15 @@ const typeDefs = [`
     firstName: String
     lastName: String
     username: String
-    password: String
     email: String
     created_at: Date
     business: Business
+    role: String
+    jwt: String
   }
   type Query {
     getBusiness(_id: String): Business
     getBusinesses: [Business]
-    getOwner(_id: String, firstName: String, lastName: String, username: String, email: String): Owner
-    getAllOwners: [Owner]
     getUsers: [User]
     getUser(_id: String): User
     getContractee(_id: String): Contractee
@@ -61,9 +51,9 @@ const typeDefs = [`
     getPaymentContracts: [PaymentContract]
   }
   type Mutation {
-    addOwner(firstName: String, lastName: String, username: String, password: String, email: String): Owner
-    addBusiness(name: String, logo: String, owner: String): Business
-    addUser(firstName: String, lastName: String, username: String, password: String, email: String, business: String): User
+    login(username: String, password: String): User
+    addBusiness(name: String, logo: String, user: String): Business
+    signup(firstName: String, lastName: String, username: String, password: String, email: String, business: String, role: String): User
     addContractee(first_name: String, last_name: String, email: String, address: String, business: String): Contractee
     addPaymentContract(contractee: String, total: Int, fees: Int, down_payment: Int, insurance: Int, range: Int, monthly_payment: Int, terms: String): PaymentContract
   }

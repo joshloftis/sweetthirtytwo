@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
-const OwnerSchema = new Schema({
+const UserSchema = new Schema({
   firstName: {
     type: String,
     trim: true,
@@ -34,7 +34,16 @@ const OwnerSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  role: {
+    type: String,
+    required: true,
+    match: [/^owner$/ || /^user$/, 'Must be either "user" or an "owner"'],
+  },
+  business: {
+    type: Schema.Types.ObjectId,
+    ref: 'Business',
+  },
 });
 
-const Owner = mongoose.model('Owner', OwnerSchema);
-module.exports = Owner;
+const User = mongoose.model('User', UserSchema);
+module.exports = User;

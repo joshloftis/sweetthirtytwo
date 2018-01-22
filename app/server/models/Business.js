@@ -9,9 +9,10 @@ const BusinessSchema = new Schema({
   logo: {
     type: String,
   },
-  owner: {
+  user: {
     type: Schema.Types.ObjectId,
-    ref: 'Owner',
+    ref: 'User',
+    required: true,
   },
 });
 

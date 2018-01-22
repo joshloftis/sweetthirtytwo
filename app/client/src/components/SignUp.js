@@ -35,9 +35,8 @@ class SignUp extends React.Component {
           username: this.state.username,
           password: this.state.password
         }
-      })
-        .then(({ owner }) => {
-          console.log('Owner added', owner);
+      }).then((owner) => {
+          console.log('Owner added', owner.data.addOwner);
         }).catch((error) => {
           console.log('No owner added because of an error:', error);
         });

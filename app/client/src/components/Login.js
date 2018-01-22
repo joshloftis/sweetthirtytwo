@@ -30,10 +30,10 @@ class Login extends React.Component {
           password: this.state.password
         }
       })
-        .then(({ owner }) => {
-          console.log('Owner added', owner);
+        .then((owner) => {
+          console.log('Login succeeded', owner.data.login);
         }).catch((error) => {
-          console.log('No owner added because of an error:', error);
+          console.log('Log in did not succeed because:', error);
         });
     }
 
@@ -60,9 +60,9 @@ class Login extends React.Component {
     }
   }
 
-  const AddOwnerMutation = gql`
-    mutation AddAOwner($firstName: String, $lastName: String, $username: String, $password: String, $email: String) {
-      addOwner(firstName: $firstName, lastName: $lastName, username: $username, password: $password, email: $email) {
+  const LoginMutation = gql`
+    mutation LoginUser($username: String, $password: String) {
+      login(username: $username, password: $password) {
         _id
         firstName
         lastName
@@ -72,4 +72,4 @@ class Login extends React.Component {
   `;
   
 
-export default graphql(AddOwnerMutation)(Login);
+export default graphql(LoginMutation)(Login);

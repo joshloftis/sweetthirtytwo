@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
-import Header from './navheader';
-import Cardheader from './cardheader';
-import Cardbody from './cardbody';
-import Agreement from './agreement';
-import Button from './cardbutton';
-import Esign from './esign';
-import Input from './input';
-import Payments from './monthlypayment';
-import Slider from './slider';
-import Table from './table';
-import Terms from './terms';
-import Cardlayout from './cardlayout';
-import Avatar from './avatar';
-import Owner from './Owner';
+ import Header from './navheader';
+ import Cardheader from './cardheader';
+ import Cardbody from './cardbody';
+// import Agreement from './agreement';
+// import Button from './cardbutton';
+// import Esign from './esign';
+// import Input from './input';
+// import Payments from './monthlypayment';
+// import Slider from './slider';
+// import Table from './table';
+// import Terms from './terms';
+// import Cardlayout from './cardlayout';
+ import Avatar from './avatar';
 import '../css/app.css';
 
 
@@ -31,7 +30,6 @@ class App extends Component {
       <div>
         <Header />
         <Avatar />
-        <Owner />
         <Cardheader />
         <div className="grid">
           <div className="col">
