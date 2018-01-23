@@ -7,14 +7,8 @@ const jwt = require('jsonwebtoken');
 const {
   User, Contractee, PaymentContract, Business,
 } = require('../models/index');
+const { businessLogic } = require('./authLogic');
 const dotenv = require('dotenv').config();
-
-const getAuthenticatedUser = context => context.user.then((user) => {
-  if (!user) {
-    return Promise.reject(Error('Unauthorized. Not a logged in user.'));
-  }
-  return user;
-});
 
 const resolvers = {
   Date: new GraphQLScalarType({
@@ -129,24 +123,14 @@ const resolvers = {
           return user;
         });
       }
-      return Promise.reject(Error('email already exists'));
+      return Promise.reject(Error('Username already exists!'));
     }),
-    addBusiness: async (root, { name, logo, user }, context) => {
-      const authUser = await getAuthenticatedUser(context);
-      const foundUser = await User.findOne({ _id: user });
-      if (authUser._id.toString() !== user) {
-        return Promise.reject(Error('Not the authed in user.'));
-      } else if (authUser._id.toString() === user && foundUser.business !== 'undefined') {
-        return Promise.reject(Error('User alread has business.'));
-      } else if (authUser._id.toString() === user && user.role === 'user') {
-        return Promise.reject(Error('Only owners can add businesses.'));
-      } else if (authUser._id.toString() === user && user.role === 'owner') {
-        return Business.create({
-          name,
-          logo,
-          user,
-        }).then(business => business);
-      }
+    addBusiness(root, args, context) {
+      return businessLogic.addBusiness(root, args, context)
+        .then((business) => {
+          console.log(business);
+          return business;
+        });
     },
   },
 };

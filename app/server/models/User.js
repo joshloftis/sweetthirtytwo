@@ -37,7 +37,7 @@ const UserSchema = new Schema({
   role: {
     type: String,
     required: true,
-    match: [/^owner$/ || /^user$/, 'Must be either "user" or an "owner"'],
+    match: [/^owner$|^user$/, 'Must be either "user" or an "owner"'],
   },
   business: {
     type: Schema.Types.ObjectId,
