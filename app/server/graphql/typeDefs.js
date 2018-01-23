@@ -5,6 +5,7 @@ const typeDefs = [`
     name: String
     logo: String
     user: [User]
+    contracts: [Contractee]
   }
   type Contractee {
     _id: String,
@@ -17,6 +18,7 @@ const typeDefs = [`
     completed: Boolean
     status: Boolean
     business: Business
+    paymentContract: PaymentContract
   }
   type PaymentContract {
     _id: String
@@ -41,14 +43,7 @@ const typeDefs = [`
     jwt: String
   }
   type Query {
-    getBusiness(_id: String): Business
-    getBusinesses: [Business]
-    getUsers: [User]
-    getUser(_id: String): User
-    getContractee(_id: String): Contractee
-    getContractees: [Contractee]
-    getPaymentContract(_id: String): PaymentContract
-    getPaymentContracts: [PaymentContract]
+    getContracts(businessId: String): Contractee
   }
   type Mutation {
     login(username: String, password: String): User

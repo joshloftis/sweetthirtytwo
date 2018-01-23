@@ -14,6 +14,12 @@ const BusinessSchema = new Schema({
     ref: 'User',
     required: true,
   },
+  contracts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Contractee',
+    },
+  ],
 });
 
 const Business = mongoose.model('Business', BusinessSchema);
