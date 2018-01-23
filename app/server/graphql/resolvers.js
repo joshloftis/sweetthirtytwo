@@ -7,7 +7,9 @@ const jwt = require('jsonwebtoken');
 const {
   User, Contractee, PaymentContract, Business,
 } = require('../models/index');
-const { businessLogic } = require('./authLogic');
+const {
+  businessLogic, userLogic, contracteeLogic, paymentContractLogic,
+} = require('./authLogic');
 const dotenv = require('dotenv').config();
 
 const resolvers = {
@@ -28,7 +30,7 @@ const resolvers = {
     },
   }),
   Business: {
-    user: ({ user }) => User.findOne(ObjectId(user), (err, result) => {
+    user: () => User.find({}, (err, result) => {
       if (err) throw err;
       return result;
     }),
@@ -127,10 +129,19 @@ const resolvers = {
     }),
     addBusiness(root, args, context) {
       return businessLogic.addBusiness(root, args, context)
-        .then((business) => {
-          console.log(business);
-          return business;
-        });
+        .then(business => business);
+    },
+    addUser(root, args, context) {
+      return userLogic.addUser(root, args, context)
+        .then(user => user);
+    },
+    addContractee(root, args, context) {
+      return contracteeLogic.addContractee(root, args, context)
+        .then(contractee => contractee);
+    },
+    addPaymentContract(root, args, context) {
+      return paymentContractLogic.addPaymentContract(root, args, context)
+        .then(paymentContract => paymentContract);
     },
   },
 };
