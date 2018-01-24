@@ -154,6 +154,10 @@ const resolvers = {
       return paymentContractLogic.addPaymentContract(root, args, context)
         .then(paymentContract => paymentContract);
     },
+    deleteContract(root, args, context) {
+      return contracteeLogic.deleteContract(root, args, context)
+        .then(message => message);
+    },
   },
 };
 

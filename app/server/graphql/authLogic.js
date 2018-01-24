@@ -120,6 +120,23 @@ const contracteeLogic = {
         return Promise.reject(Error('You cannot get contracts for this business!'));
       });
   },
+  deleteContract(root, { contracteeId, userId }, context) {
+    return getAuthenticatedUser(context)
+      .then(currUser => User.findById(userId)
+        .then((user) => {
+          if (currUser.business.toString() === user.business.toString()) {
+            return Contractee.remove({ _id: contracteeId })
+              .then((success) => {
+                if (success) {
+                  return PaymentContract.remove({ contractee: contracteeId })
+                    .then(removed => removed);
+                }
+                return Promise.reject(Error('Contractee not deleted.'));
+              });
+          }
+          return Promise.reject(Error('This user cannot delete contractees.'));
+        }));
+  },
 };
 
 const paymentContractLogic = {

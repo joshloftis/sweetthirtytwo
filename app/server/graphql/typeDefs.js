@@ -56,6 +56,7 @@ const typeDefs = [`
     addContractee(first_name: String, last_name: String, email: String, address: String, business: String): Contractee
     addPaymentContract(contractee: String, total: Int, fees: Int, down_payment: Int, insurance: Int, range: Int, monthly_payment: Int, terms: String): PaymentContract
     addUser(firstName: String, lastName: String, username: String, password: String, email: String, business: String): User
+    deleteContract(contracteeId: String, userId: String): Contractee
   }
   schema {
     query: Query
