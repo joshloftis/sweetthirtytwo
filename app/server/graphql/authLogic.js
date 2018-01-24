@@ -64,29 +64,31 @@ const contracteeLogic = {
     first_name, last_name, email, address, business,
   }, context) {
     return getAuthenticatedUser(context)
-      .then((currUser) => {
-        if (currUser.business.toString() === business) {
-          return Contractee.create({
-            first_name,
-            last_name,
-            email,
-            address,
-            business,
-          }).then((contractee) => {
-            Business.findByIdAndUpdate(business, { $push: { contracts: contractee } }, { upsert: true, new: true })
-              .exec();
-            return contractee;
-          });
-        }
-        return Promise.reject((Error('Logged in user cannot add contractee for this business.')));
-      });
+      .then(currUser => Contractee.findOne({ email })
+        .then((existing) => {
+          if (!existing) {
+            if (currUser.business.toString() === business) {
+              return Contractee.create({
+                first_name, last_name, email, address, business,
+              }).then((contractee) => {
+                Business.findByIdAndUpdate(business, { $push: { contracts: contractee } }, { upsert: true, new: true })
+                  .exec();
+                return contractee;
+              });
+            }
+            return Promise.reject(Error('Logged in user cannot add contractee for this business.'));
+          }
+          return Promise.reject(Error('This contract already exists!'));
+        }));
   },
-  getContracts(root, { businessId }, context) {
+  getBizContracts(root, { businessId }, context) {
     return getAuthenticatedUser(context)
       .then((currUser) => {
         if (currUser.business.toString() === businessId) {
-          return Contractee.find({ business: businessId });
+          return Contractee.find({ business: ObjectId(businessId) })
+            .then(contracts => contracts);
         }
+        return Promise.reject(Error('You cannot get contracts for this business!'));
       });
   },
 };

@@ -56,8 +56,10 @@ const resolvers = {
       });
     },
     paymentContract({ _id }) {
-      return PaymentContract.findOne(ObjectId(_id), (err, result) => {
+      return PaymentContract.findOne({ contractee: ObjectId(_id) }, (err, result) => {
         if (err) throw err;
+        console.log(_id);
+        console.log(result);
         return result;
       });
     },
@@ -72,7 +74,8 @@ const resolvers = {
   },
   Query: {
     getContracts(root, args, context) {
-      return contracteeLogic.getContracts(root, args, context);
+      return contracteeLogic.getBizContracts(root, args, context)
+        .then(contracts => contracts);
     },
   },
   Mutation: {

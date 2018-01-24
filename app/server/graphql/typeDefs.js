@@ -28,7 +28,7 @@ const typeDefs = [`
     down_payment: Int
     insurance: Int
     range: Int
-    monthly_payment: Int
+    monthly_payment: Float
     terms: String
   }
   type User {
@@ -43,7 +43,7 @@ const typeDefs = [`
     jwt: String
   }
   type Query {
-    getContracts(businessId: String): Contractee
+    getContracts(businessId: String): [Contractee]
   }
   type Mutation {
     login(username: String, password: String): User
