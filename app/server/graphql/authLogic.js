@@ -100,6 +100,16 @@ const contracteeLogic = {
         return Promise.reject(Error('You cannot get contracts for this business!'));
       });
   },
+  getBizContract(root, { businessId, contractId }, context) {
+    return getAuthenticatedUser(context)
+      .then((currUser) => {
+        if (currUser.business.toString() === businessId) {
+          return Contractee.findOne({ _id: contractId })
+            .then(contract => contract);
+        }
+        return Promise.reject(Error('You cannot get contracts for this business!'));
+      });
+  },
 };
 
 const paymentContractLogic = {

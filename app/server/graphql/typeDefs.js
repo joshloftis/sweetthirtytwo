@@ -44,6 +44,7 @@ const typeDefs = [`
   }
   type Query {
     getContracts(businessId: String): [Contractee]
+    getContract(businessId: String, contractId: String): Contractee
     getUsers(businessId: String): [User]
   }
   type Mutation {

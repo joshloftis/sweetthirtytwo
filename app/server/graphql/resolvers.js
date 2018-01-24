@@ -77,6 +77,10 @@ const resolvers = {
       return contracteeLogic.getBizContracts(root, args, context)
         .then(contracts => contracts);
     },
+    getContract(root, args, context) {
+      return contracteeLogic.getBizContract(root, args, context)
+        .then(contract => contract);
+    },
     getUsers(root, args, context) {
       return userLogic.getAllUsers(root, args, context)
         .then(users => users);
