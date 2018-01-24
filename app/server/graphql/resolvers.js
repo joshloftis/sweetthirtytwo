@@ -89,6 +89,10 @@ const resolvers = {
       return paymentContractLogic.getPaymentContract(root, args, context)
         .then(paymentContract => paymentContract);
     },
+    getBusiness(root, args, context) {
+      return businessLogic.getBusiness(root, args, context)
+        .then(business => business);
+    },
   },
   Mutation: {
     login(root, { username, password }, context) {

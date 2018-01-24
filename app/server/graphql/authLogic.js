@@ -29,6 +29,16 @@ const businessLogic = {
         });
       });
   },
+  getBusiness(root, { userId }, context) {
+    return getAuthenticatedUser(context)
+      .then(currUser => Business.findOne({ user: userId })
+        .then((business) => {
+          if (currUser.business.toString() === business._id.toString()) {
+            return business;
+          }
+          return Promise.reject(Error('This user is cannot access this business.'));
+        }));
+  },
 };
 
 const userLogic = {
