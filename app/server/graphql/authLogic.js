@@ -134,6 +134,24 @@ const paymentContractLogic = {
           return Promise.reject(Error('Payment contract cannot be added for this contractee!'));
         }));
   },
+  getPaymentContract(root, { contractId }, context) {
+    return getAuthenticatedUser(context)
+      .then(currUser => PaymentContract.findOne({ contractee: ObjectId(contractId) })
+        .then((paymentContract) => {
+          console.log(paymentContract);
+          if (paymentContract) {
+            return Contractee.findById(contractId)
+              .then((contract) => {
+                console.log(contract);
+                if (currUser.business.toString() === contract.business.toString()) {
+                  return paymentContract;
+                }
+                return Promise.reject(Error('This payment contract does not belong to this business.'));
+              });
+          }
+          return Promise.reject(Error('This payment contract does not exist.'));
+        }));
+  },
 };
 
 module.exports = {

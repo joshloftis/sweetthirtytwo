@@ -85,6 +85,10 @@ const resolvers = {
       return userLogic.getAllUsers(root, args, context)
         .then(users => users);
     },
+    getPaymentContract(root, args, context) {
+      return paymentContractLogic.getPaymentContract(root, args, context)
+        .then(paymentContract => paymentContract);
+    },
   },
   Mutation: {
     login(root, { username, password }, context) {

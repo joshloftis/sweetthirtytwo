@@ -46,6 +46,7 @@ const typeDefs = [`
     getContracts(businessId: String): [Contractee]
     getContract(businessId: String, contractId: String): Contractee
     getUsers(businessId: String): [User]
+    getPaymentContract(contractId: String): PaymentContract
   }
   type Mutation {
     login(username: String, password: String): User
