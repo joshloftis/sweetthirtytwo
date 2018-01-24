@@ -44,6 +44,7 @@ const typeDefs = [`
   }
   type Query {
     getContracts(businessId: String): [Contractee]
+    getUsers(businessId: String): [User]
   }
   type Mutation {
     login(username: String, password: String): User
@@ -51,7 +52,7 @@ const typeDefs = [`
     signup(firstName: String, lastName: String, username: String, password: String, email: String, role: String, business: String): User
     addContractee(first_name: String, last_name: String, email: String, address: String, business: String): Contractee
     addPaymentContract(contractee: String, total: Int, fees: Int, down_payment: Int, insurance: Int, range: Int, monthly_payment: Int, terms: String): PaymentContract
-    addUser(id: String, firstName: String, lastName: String, username: String, password: String, email: String, business: String): User
+    addUser(firstName: String, lastName: String, username: String, password: String, email: String, business: String): User
   }
   schema {
     query: Query

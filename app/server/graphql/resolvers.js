@@ -77,6 +77,10 @@ const resolvers = {
       return contracteeLogic.getBizContracts(root, args, context)
         .then(contracts => contracts);
     },
+    getUsers(root, args, context) {
+      return userLogic.getAllUsers(root, args, context)
+        .then(users => users);
+    },
   },
   Mutation: {
     login(root, { username, password }, context) {
@@ -100,7 +104,7 @@ const resolvers = {
       });
     },
     signup(root, {
-      firstName, lastName, email, username, password, role,
+      firstName, lastName, email, username, password,
     }, context) {
       return User.findOne({ username }).then((existing) => {
         if (!existing) {
@@ -110,7 +114,7 @@ const resolvers = {
             email,
             password: hash,
             username,
-            role,
+            role: 'owner',
           })).then((user) => {
             const { id } = user;
             const token = jwt.sign({ id, email }, process.env.JWT_SECRET);

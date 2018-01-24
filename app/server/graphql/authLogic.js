@@ -23,13 +23,8 @@ const businessLogic = {
           logo,
           user,
         }).then((business) => {
-          User.findById(user, (err, foundUser) => {
-            if (err) throw err;
-            foundUser.business = business._id;
-            foundUser.save((error, updatedUser) => {
-              if (error) throw error;
-            });
-          });
+          User.findByIdAndUpdate(user, { $set: { business } }, { upsert: true, new: true })
+            .exec();
           return business;
         });
       });
@@ -38,7 +33,7 @@ const businessLogic = {
 
 const userLogic = {
   addUser(root, {
-    id, firstName, lastName, email, username, password, business,
+    firstName, lastName, email, username, password, business,
   }, context) {
     return getAuthenticatedUser(context)
       .then(currUser => User.findOne({ username })
@@ -55,6 +50,20 @@ const userLogic = {
             }));
           }
           return Promise.reject(Error('Username already exists!'));
+        }));
+  },
+  getAllUsers(root, { businessId }, context) {
+    return getAuthenticatedUser(context)
+      .then(currUser => Business.findById(businessId)
+        .then((business) => {
+          if (business) {
+            if (currUser.business.toString() === businessId && currUser.role.toString() === 'owner') {
+              return User.find({ business: businessId })
+                .then(users => users);
+            }
+            return Promise.reject(Error('This user cannot find all users for this business.'));
+          }
+          return Promise.reject(Error('This business does not exist.'));
         }));
   },
 };

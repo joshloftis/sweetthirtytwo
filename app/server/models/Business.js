@@ -9,11 +9,13 @@ const BusinessSchema = new Schema({
   logo: {
     type: String,
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
+  user: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+  ],
   contracts: [
     {
       type: Schema.Types.ObjectId,
