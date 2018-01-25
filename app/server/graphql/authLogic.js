@@ -128,13 +128,52 @@ const contracteeLogic = {
             return Contractee.remove({ _id: contracteeId })
               .then((success) => {
                 if (success) {
-                  return PaymentContract.remove({ contractee: contracteeId })
-                    .then(removed => removed);
+                  PaymentContract.remove({ contractee: contracteeId })
+                    .then((removed) => {
+                      if (removed) {
+                        return 'Payment Contract was deleted.';
+                      }
+                      return 'No payment contract found.';
+                    });
+                  return 'Contract was deleted.';
                 }
                 return Promise.reject(Error('Contractee not deleted.'));
               });
           }
           return Promise.reject(Error('This user cannot delete contractees.'));
+        }));
+  },
+  updateContract(root, {
+    userId, contractee, first_name, last_name, email, address, completed, status,
+  }, context) {
+    return getAuthenticatedUser(context)
+      .then(currUser => User.findById(userId)
+        .then((user) => {
+          if (currUser.business.toString() === user.business.toString()) {
+            return Contractee.findById(contractee)
+              .then((foundContract) => {
+                if (first_name !== undefined) {
+                  foundContract.first_name = first_name;
+                }
+                if (last_name !== undefined) {
+                  foundContract.last_name = last_name;
+                }
+                if (email !== undefined) {
+                  foundContract.email = email;
+                }
+                if (address !== undefined) {
+                  foundContract.address = address;
+                }
+                if (completed !== undefined) {
+                  foundContract.completed = completed;
+                }
+                if (status !== undefined) {
+                  foundContract.status = status;
+                }
+                return foundContract.save();
+              });
+          }
+          return Promise.reject(Error('This user cannot update this contract.'));
         }));
   },
 };
@@ -165,11 +204,9 @@ const paymentContractLogic = {
     return getAuthenticatedUser(context)
       .then(currUser => PaymentContract.findOne({ contractee: ObjectId(contractId) })
         .then((paymentContract) => {
-          console.log(paymentContract);
           if (paymentContract) {
             return Contractee.findById(contractId)
               .then((contract) => {
-                console.log(contract);
                 if (currUser.business.toString() === contract.business.toString()) {
                   return paymentContract;
                 }
@@ -178,6 +215,40 @@ const paymentContractLogic = {
           }
           return Promise.reject(Error('This payment contract does not exist.'));
         }));
+  },
+  updatePaymentContract(root, {
+    userId, contractee, total, fees, down_payment, insurance, range, terms,
+  }, context) {
+    return getAuthenticatedUser(context)
+      .then(currUser => User.findById(userId)
+        .then((user) => {
+          if (currUser.business.toString() === user.business.toString()) {
+            return PaymentContract.findOne({ contractee })
+              .then((paymentContract) => {
+                if (total !== undefined) {
+                  paymentContract.total = total;
+                }
+                if (fees !== undefined) {
+                  paymentContract.fees = fees;
+                }
+                if (down_payment !== undefined) {
+                  paymentContract.down_payment = down_payment;
+                }
+                if (insurance !== undefined) {
+                  paymentContract.insurance = insurance;
+                }
+                if (range !== undefined) {
+                  paymentContract.range = range;
+                }
+                if (terms !== undefined) {
+                  paymentContract.terms = terms;
+                }
+                paymentContract.getMonthlyPayment();
+                return paymentContract.save();
+              });
+          }
+          return Promise.reject(Error('This user cannot edit payment contracts for this business.'));
+        }).then(paymentContract => Contractee.findById(contractee)));
   },
 };
 

@@ -58,8 +58,6 @@ const resolvers = {
     paymentContract({ _id }) {
       return PaymentContract.findOne({ contractee: ObjectId(_id) }, (err, result) => {
         if (err) throw err;
-        console.log(_id);
-        console.log(result);
         return result;
       });
     },
@@ -70,6 +68,11 @@ const resolvers = {
         if (err) throw err;
         return result;
       });
+    },
+  },
+  DeleteMessage: {
+    message() {
+      return 'Delete successful';
     },
   },
   Query: {
@@ -157,6 +160,14 @@ const resolvers = {
     deleteContract(root, args, context) {
       return contracteeLogic.deleteContract(root, args, context)
         .then(message => message);
+    },
+    updateContract(root, args, context) {
+      return contracteeLogic.updateContract(root, args, context)
+        .then(contract => contract);
+    },
+    updatePaymentContract(root, args, context) {
+      return paymentContractLogic.updatePaymentContract(root, args, context)
+        .then(contract => contract);
     },
   },
 };
