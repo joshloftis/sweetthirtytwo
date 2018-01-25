@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
+import '../css/login.css';
 
 class SignUp extends React.Component {
   constructor(props) {
@@ -46,51 +47,78 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div>
-        <form>
-          <input
-            type="text"
-            placeholder="First Name"
-            name="firstName"
-            value={this.state.firstName}
-            onChange={this.handleInputChange}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            name="lastName"
-            value={this.state.lastName}
-            onChange={this.handleInputChange}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Email Address"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleInputChange}
-            required
-          />
-          <input
-            type="text"
-            placeholder="Username"
-            name="username"
-            value={this.state.username}
-            onChange={this.handleInputChange}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleInputChange}
-            required
-          />
-          <button type="Submit" onClick={this.onClick}>Submit</button>
-        </form>
-      </div>
+      <main className="mainspace black-80">
+        <form className="measure center" />
+        <fieldset id="sign_up" className="ba b--transparent ph0 mh0" />
+        <legend className="f4 fw6 ph0 mh0">Sign Up</legend>
+        <div>
+          <form>
+            <div className="mt3">
+              <label classNAme="db fw6 lh-copy f6" htmlFor="firstname">First Name</label>
+              <input
+                type="text"
+                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                placeholder="First Name"
+                name="firstName"
+                value={this.state.firstName}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
+            <div className="mt3">
+              <label classNAme="db fw6 lh-copy f6" htmlFor="lastname">Last Name</label>
+              <input
+                type="text"
+                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                placeholder="Last Name"
+                name="lastName"
+                value={this.state.lastName}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
+            <div className="mt3">
+              <label classNAme="db fw6 lh-copy f6" htmlFor="email">Email</label>
+              <input
+                type="text"
+                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                placeholder="Email Address"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
+            <div className="mt3">
+              <label classNAme="db fw6 lh-copy f6" htmlFor="username">Username</label>
+              <input
+                type="text"
+                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                placeholder="Username"
+                name="username"
+                value={this.state.username}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
+            <div className="mt3">
+              <label classNAme="db fw6 lh-copy f6" htmlFor="password">Password</label>
+              <input
+                type="password"
+                className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
+                placeholder="Password"
+                name="password"
+                value={this.state.password}
+                onChange={this.handleInputChange}
+                required
+              />
+            </div>
+          </form>
+        </div>
+        <div className="">
+          <input onClick={this.onClick} className="spacer b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Sign in" />
+        </div>
+      </main>
     );
   }
 }
