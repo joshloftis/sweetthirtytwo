@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './navheader';
-import CardLayout from './cardlayout';
+import Cardlayout from './cardlayout';
 import Avatar from './avatar';
 import '../css/app.css';
 
@@ -20,7 +20,7 @@ class App extends Component {
       <div>
         <Header />
         <Avatar />
-        <CardLayout />
+        <Cardlayout />
       </div>
     );
   }

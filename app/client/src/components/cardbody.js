@@ -1,10 +1,10 @@
 import React from 'react';
-//import App from './App';
+
 import '../css/cardbody.css';
 
 
-const Cardbody = props => 
-    <div>
+const CardBody = props => 
+  <div>
         <span className="viz">
         <article className="colorsplit measure mw5 bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
             <div className="tc">
@@ -21,8 +21,8 @@ const Cardbody = props =>
                 </p>
         </article>
         </span>
-    </div>
-export default Cardbody;
+    </div>;
+export default CardBody;
 
 
 
