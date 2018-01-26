@@ -1,5 +1,6 @@
 import React from 'react';
-
+import CardButton from './cardbutton';
+/* eslint-disable */
 import '../css/cardbody.css';
 
 
@@ -13,12 +14,10 @@ const CardBody = props =>
                 className="hideme showme br-100 h3 w3 dib" 
                 title="Photo of daenerys targaryen"/>
                 <h4>Customer Name</h4>
-                <h5 className="hideme showme">Show Total Cost/Bill.</h5>
+                <h5>Show Total Cost/Bill.</h5>
                 <hr className="mw4 bb bw1 b--black-10"/>
             </div>
-                <p className="hideme showme lh-copy measure center f6 black-70">
-                    I swear this: If you ever betray me, I'll burn you alive.
-                </p>
+                <CardButton />
         </article>
         </span>
     </div>;
