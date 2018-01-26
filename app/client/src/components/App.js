@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Header from './navheader';
-import CardLayout from './cardlayout';
+import Cardlayout from './cardlayout';
 import Avatar from './avatar';
 import '../css/app.css';
 
@@ -17,10 +17,10 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="gridhome">
         <Header />
         <Avatar />
-        <CardLayout />
+        <Cardlayout />
       </div>
     );
   }

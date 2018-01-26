@@ -1,6 +1,7 @@
 .grid {
     display: flex;
     flex-wrap: wrap;
+    width: 79%;
     
 }
 
@@ -103,7 +104,7 @@
     }
 }
 
-/*===================================*/
+/*===================================
 
 .viz img {
     display: none;
@@ -119,7 +120,7 @@
 
 
 
-/*===================================*/
+/*===================================
 .viz:hover img {
     display: initial;
 }
@@ -131,13 +132,79 @@
 .viz:hover p {
     display: initial;
 }
+
+/*=========================================*/
+.viz img {
+    display: none;
+}
+
+.viz:hover img {
+    display: initial;
+    
+    -webkit-animation: slide-down .1s ease-out;
+    -moz-animation: slide-down .1s ease-out;
+}
+
+@-webkit-keyframes slide-down {
+      0% { opacity: 0; -webkit-transform: translateY(-100%); }   
+    100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+@-moz-keyframes slide-down {
+      0% { opacity: 0; -moz-transform: translateY(-100%); }   
+    100% { opacity: 1; -moz-transform: translateY(0); }
+}
+
+
+/*=========================================*/
+.viz h5 {
+    display: none;
+}
+
+.viz:hover h5 {
+    display: initial;
+    
+    -webkit-animation: slide-down .3s ease-out;
+    -moz-animation: slide-down .3s ease-out;
+}
+
+@-webkit-keyframes slide-down {
+      0% { opacity: 0; -webkit-transform: translateY(-100%); }   
+    100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+@-moz-keyframes slide-down {
+      0% { opacity: 0; -moz-transform: translateY(-100%); }   
+    100% { opacity: 1; -moz-transform: translateY(0); }
+}
+
+
+/*=========================================*/
+.viz p {
+    display: none;
+}
+
+.viz:hover p {
+    display: initial;
+    
+    -webkit-animation: slide-down .3s ease-out;
+    -moz-animation: slide-down .3s ease-out;
+}
+
+@-webkit-keyframes slide-down {
+      0% { opacity: 0; -webkit-transform: translateY(-100%); }   
+    100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+@-moz-keyframes slide-down {
+      0% { opacity: 0; -moz-transform: translateY(-100%); }   
+    100% { opacity: 1; -moz-transform: translateY(0); }
+}
+
 /*===================================*/
 colorsplit {
     background: #fff;
 }
 
 .colorsplit:hover {
-    background: linear-gradient(to top, white 57%, coral 43%);
+    background: linear-gradient(to top, white 65%, coral 35%);
     background: -o-linear-gradient(to bottom, white 60%, coral 40%);
     background: -moz-linear-gradient(to bottom, white 60%, coral 40%);
     background: -webkit-linear-gradient(to bottom, white 60%, coral 40%);
