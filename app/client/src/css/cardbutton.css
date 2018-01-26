@@ -2,16 +2,6 @@
 
 /*========================================================*/
 
-.ba {
-    border-style: solid;
-    border-width: 3px;
-    border-radius: 2px;
-}
-
-.fw6 {
-    font-weight: 600;
-}
-
 .tracked {
     letter-spacing: .1em;
 }
@@ -51,10 +41,6 @@
     margin-top: 1rem;
 }
 
-.mt4 {
-    margin-top: 2rem;
-}
-
 .ttu {
     text-transform: uppercase;
 }
@@ -79,9 +65,10 @@
 }
 
 /*=======================================================*/
-
+/*
 .viz a {
-    display: none;
+    display: initial;
+    width: 100%;
 }
 
 
@@ -89,4 +76,69 @@
     display: initial;
     background: #50d0ff;
     color: black;
+}
+*/
+/*.viz a {
+    opacity: 0;
+}
+
+.viz:hover a {
+    opacity: 1;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}*/
+
+/*===================================================*/
+
+.fl {
+    float: left;
+    _display: inline;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.bg-light-gray {
+    background-color: #eee;
+}
+
+.alpha {
+    flex-direction: row;
+    flex: 1;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.btn {
+    width: 100%;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 2px;
+    background: #50d0ff;
+    color: black;
+}
+
+/*=========================================*/
+.viz a {
+    display: none;
+}
+
+.viz:hover a {
+    display: inline;
+    
+    -webkit-animation: slide-down .3s ease-out;
+    -moz-animation: slide-down .3s ease-out;
+}
+
+@-webkit-keyframes slide-down {
+      0% { opacity: 0; -webkit-transform: translateY(-100%); }   
+    100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+@-moz-keyframes slide-down {
+      0% { opacity: 0; -moz-transform: translateY(-100%); }   
+    100% { opacity: 1; -moz-transform: translateY(0); }
 }

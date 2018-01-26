@@ -12,7 +12,22 @@
     "react": "^16.2.0",
     "react-apollo": "^2.0.4",
     "react-dom": "^16.2.0",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "tachyons-border-widths": "^3.0.4",
+    "tachyons-borders": "^3.0.4",
+    "tachyons-clears": "^3.0.4",
+    "tachyons-display": "^5.0.4",
+    "tachyons-floats": "^3.0.4",
+    "tachyons-font-weight": "^5.0.4",
+    "tachyons-hovers": "^2.5.1",
+    "tachyons-letter-spacing": "^3.0.4",
+    "tachyons-links": "^3.0.10",
+    "tachyons-skins": "^4.1.0",
+    "tachyons-spacing": "^6.0.4",
+    "tachyons-text-align": "^3.1.0",
+    "tachyons-text-transform": "^4.0.5",
+    "tachyons-type-scale": "^6.1.0",
+    "tachyons-widths": "^5.2.1"
   },
   "devDependencies": {
     "eslint": "^4.16.0",
