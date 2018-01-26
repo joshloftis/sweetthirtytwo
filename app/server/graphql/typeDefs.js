@@ -55,7 +55,7 @@ const typeDefs = [`
     getBusiness(userId: String): Business
   }
   type Mutation {
-    login(username: String, password: String): User
+    login(username: String!, password: String!): User
     addBusiness(name: String, logo: String, user: String): Business
     signup(firstName: String, lastName: String, username: String, password: String, email: String, role: String, business: String): User
     addContractee(first_name: String, last_name: String, email: String, address: String, business: String): Contractee

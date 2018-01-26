@@ -54,7 +54,7 @@ class SignUp extends React.Component {
         <div>
           <form>
             <div className="mt3">
-              <label classNAme="db fw6 lh-copy f6" htmlFor="firstname">First Name</label>
+              <label className="db fw6 lh-copy f6" htmlFor="firstname">First Name</label>
               <input
                 type="text"
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -66,7 +66,7 @@ class SignUp extends React.Component {
               />
             </div>
             <div className="mt3">
-              <label classNAme="db fw6 lh-copy f6" htmlFor="lastname">Last Name</label>
+              <label className="db fw6 lh-copy f6" htmlFor="lastname">Last Name</label>
               <input
                 type="text"
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -78,7 +78,7 @@ class SignUp extends React.Component {
               />
             </div>
             <div className="mt3">
-              <label classNAme="db fw6 lh-copy f6" htmlFor="email">Email</label>
+              <label className="db fw6 lh-copy f6" htmlFor="email">Email</label>
               <input
                 type="text"
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -90,7 +90,7 @@ class SignUp extends React.Component {
               />
             </div>
             <div className="mt3">
-              <label classNAme="db fw6 lh-copy f6" htmlFor="username">Username</label>
+              <label className="db fw6 lh-copy f6" htmlFor="username">Username</label>
               <input
                 type="text"
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -102,7 +102,7 @@ class SignUp extends React.Component {
               />
             </div>
             <div className="mt3">
-              <label classNAme="db fw6 lh-copy f6" htmlFor="password">Password</label>
+              <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
               <input
                 type="password"
                 className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -130,6 +130,7 @@ const AddNewUser = gql`
         firstName
         lastName
         username
+        jwt
       }
     }
   `;

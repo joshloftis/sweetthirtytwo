@@ -1,16 +1,14 @@
 import React from 'react';
 import CardBody from './cardbody';
-import CardButton from './cardbutton';
 import CardHeader from './cardheader';
 
 import '../css/cardbody.css';
 
-const Cardlayout = (props) => {
+const CardLayout = () => (
   <div>
     <CardHeader />
     <CardBody />
-    <CardButton />
-  </div>;
-};
+  </div>
+);
 
-export default Cardlayout;
+export default CardLayout;

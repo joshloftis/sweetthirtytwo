@@ -43,6 +43,9 @@ const UserSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Business',
   },
+  google_token: {
+    type: String,
+  },
 });
 
 const User = mongoose.model('User', UserSchema);
