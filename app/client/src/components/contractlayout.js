@@ -3,20 +3,10 @@ import InputField from './input';
 
 import '../css/cardbody.css';
 
-const Inputlayout = props =>
-<div className="grid">
-    <div className="col">
-        <InputField/>
-        <InputField/>
-        <InputField/>
-    </div>
-    <div className="col">
-        <InputField/>
-        <InputField/>
-        <InputField/>
-    </div>
-    <div className="col">
-        <InputField/>
-    </div>
-</div>
+const Cardlayout = props => {
+    < div className="cardbody" >
+        <div className="flexGrid">{props.children}</div>
+    < /div>
+
+};
 export default Inputlayout;

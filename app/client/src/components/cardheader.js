@@ -4,8 +4,10 @@ import '../css/cardheader.css';
 
 const Cardheader = props =>
     <div className="cardheader b--black-10 br3 ba">
-        <p className="backbtn"> - Open Contracts </p>
-        <h4>--- Contract Info ---</h4>
+        <p className="backbtn"> - Back </p>
+    <h4>--- Contract Info ---<br>
+       _______________________
+    </h4>
     </div>
 
 
