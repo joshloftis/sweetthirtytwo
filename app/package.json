@@ -5,11 +5,10 @@
   "main": "server/server.js",
   "scripts": {
     "server": "node server/server.js",
-    "client": "cd client && npm run start",
-    "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
-    "build": "cd client && npm run build",
-    "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "client": "(cd client && yarn start)",
+    "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon server/server.js\" \"npm run client\"",
+    "test": "echo \"Error: no hello specified\" && exit 1",
+    "postinstall": "(cd client && yarn install && yarn run build)"
   },
   "author": "",
   "license": "ISC",
