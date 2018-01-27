@@ -1,14 +1,17 @@
 {
   "name": "Suite32",
+  "engine": {
+    "node": " >= 6.10.3"
+  },
   "version": "1.0.0",
   "description": "Suite32 Site",
   "main": "server/server.js",
   "scripts": {
     "server": "node server/server.js",
-    "client": "(cd client && yarn start)",
+    "client": "(cd app/client && yarn start)",
     "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon server/server.js\" \"npm run client\"",
     "test": "echo \"Error: no hello specified\" && exit 1",
-    "postinstall": "(cd client && yarn install && yarn run build)"
+    "postinstall": "(cd app/client && yarn install && yarn run build)"
   },
   "author": "",
   "license": "ISC",
