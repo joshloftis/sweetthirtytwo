@@ -26,5 +26,6 @@ const Cardlayout = props => (
       <CardBody />
       <CardBody />
     </div>
-    </div>
+  </div>
+);
 export default Cardlayout;
