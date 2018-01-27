@@ -16,7 +16,7 @@ class App extends Component {
   }
 
   render() {
-    const token = localStorage.getItem('token');
+    console.log(this.props.data.getUser);
     return (
       <div className="gridhome">
         <Header />
@@ -27,14 +27,35 @@ class App extends Component {
   }
 }
 
-const ContractsQuery = gql`
-  query ContractsQuery {
-    getBusiness {
+const GetUser = gql`
+  query GetUser {
+    getUser {
       _id
-      name
-      contracts
+      firstName
+      lastName
+      business {
+        _id
+        name
+        contracts {
+          first_name
+          last_name
+          email
+          address
+          completed
+          status
+          paymentContract {
+            total
+            fees
+            down_payment
+            insurance
+            range
+            monthly_payment
+            terms
+          }
+        }
+      }
     }
   }
 `;
 
-export default graphql(ContractsQuery)(App);
+export default graphql(GetUser)(App);

@@ -81,7 +81,9 @@ const resolvers = {
   Query: {
     getUser(root, args, context) {
       return context.user.then((user) => {
+        console.log(context);
         if (!user) {
+          console.log(`The user is ${user}`);
           return Promise.reject(Error('Not a user'));
         }
         return User.findById(ObjectId(user._id));
