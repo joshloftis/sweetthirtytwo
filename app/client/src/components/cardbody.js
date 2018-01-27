@@ -19,5 +19,6 @@ const CardBody = props => (
                 <CardButton />
         </article>
         </span>
-    </div>;
+    </div>
+);
 export default CardBody;
