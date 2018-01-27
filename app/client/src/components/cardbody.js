@@ -2,7 +2,6 @@ import React from 'react';
 import CardButton from './cardbutton';
 import '../css/cardbody.css';
 
-
 const CardBody = props => (
   <div>
         <span className="viz colorsplit">

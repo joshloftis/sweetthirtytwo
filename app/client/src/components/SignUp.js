@@ -18,15 +18,6 @@ class SignUp extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  handleInputChange(e) {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value,
-    });
-  }
-
   onClick(e) {
     e.preventDefault();
     this.props.mutate({
@@ -39,10 +30,24 @@ class SignUp extends React.Component {
         role: 'owner',
       },
     }).then((user) => {
-      console.log('user added', user.data.signup);
+      const { jwt } = user.data.signup;
+      this.saveUserData(jwt);
+      this.props.history.push('/suite32');
     }).catch((error) => {
-      console.log('No user added because of an error:', error);
+      console.log('Sign up did not succeed because:', error);
     });
+  }
+
+  handleInputChange(e) {
+    const { target } = e;
+    const { value, name } = target;
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  saveUserData(token) {
+    localStorage.setItem('token', token);
   }
 
   render() {
