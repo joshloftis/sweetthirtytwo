@@ -7,7 +7,7 @@
   "description": "Suite32 Site",
   "main": "server/server.js",
   "scripts": {
-    "server": "node server/server.js",
+    "server": "node app/server/server.js",
     "client": "(cd app/client && yarn start)",
     "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon server/server.js\" \"npm run client\"",
     "test": "echo \"Error: no hello specified\" && exit 1",
