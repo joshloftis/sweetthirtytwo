@@ -16,12 +16,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.props.data.getUser.firstName);
-    // try {
-    //   console.log(this.props.data.loading);
-    // } catch (error) {
-    //   console.log('loading');
-    // }
     return (
       <div className="gridhome">
         <Header />
@@ -42,6 +36,7 @@ const GetUser = gql`
         _id
         name
         contracts {
+          _id
           first_name
           last_name
           email
