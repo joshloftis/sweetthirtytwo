@@ -16,12 +16,17 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.data.getUser);
+    // console.log(this.props.data.getUser.firstName);
+    // try {
+    //   console.log(this.props.data.loading);
+    // } catch (error) {
+    //   console.log('loading');
+    // }
     return (
       <div className="gridhome">
         <Header />
         <Avatar />
-        <Cardlayout />
+        <Cardlayout {...this.props} />
       </div>
     );
   }

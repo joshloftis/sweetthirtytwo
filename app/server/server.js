@@ -22,7 +22,7 @@ app.use(
   bodyParser.json(),
   jwt({
     secret: process.env.JWT_SECRET,
-    credentialsRequired: false,
+    credentialsRequired: true,
   }),
   graphqlExpress(req => ({
     schema,
@@ -33,7 +33,7 @@ app.use(
   })),
   jwt({
     secret: process.env.JWT_SECRET,
-    credentialsRequired: false,
+    credentialsRequired: true,
   }),
 );
 
