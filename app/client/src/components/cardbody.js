@@ -6,7 +6,7 @@ import '../css/cardbody.css';
 
 const CardBody = props => 
   <div>
-        <span className="viz">
+        <span className="viz colorsplit">
         <article className="colorsplit measure mw5 bg-white br3 pa3 pa4-ns mv3 ba b--black-10">
             <div className="tc">
                 <h4>Show Date for next appointment.</h4>    

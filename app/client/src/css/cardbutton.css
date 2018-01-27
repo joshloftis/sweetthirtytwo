@@ -128,7 +128,7 @@
 }
 
 .viz:hover a {
-    display: inline;
+    display: initial;
     
     -webkit-animation: slide-down .3s ease-out;
     -moz-animation: slide-down .3s ease-out;
