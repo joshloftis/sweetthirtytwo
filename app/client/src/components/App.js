@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { graphql } from 'react-apollo';
+import gql from 'graphql-tag';
 import Header from './navheader';
 import Cardlayout from './cardlayout';
 import Avatar from './avatar';
@@ -6,16 +8,15 @@ import '../css/app.css';
 
 
 class App extends Component {
-  // state = {
-  //   cardbody: [
-  //       {
-  //         img: ,
-  //         name: ,
-  //         totalcost: ,
-  //       }]};
+  constructor(props) {
+    super(props);
+    this.state = {
 
+    };
+  }
 
   render() {
+    const token = localStorage.getItem('token');
     return (
       <div className="gridhome">
         <Header />
@@ -26,4 +27,14 @@ class App extends Component {
   }
 }
 
-export default App;
+const ContractsQuery = gql`
+  query ContractsQuery {
+    getBusiness {
+      _id
+      name
+      contracts
+    }
+  }
+`;
+
+export default graphql(ContractsQuery)(App);

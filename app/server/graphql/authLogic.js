@@ -29,9 +29,9 @@ const businessLogic = {
         });
       });
   },
-  getBusiness(root, { userId }, context) {
+  getBusiness(root, { jwt }, context) {
     return getAuthenticatedUser(context)
-      .then(currUser => Business.findOne({ user: userId })
+      .then(currUser => Business.findOne({ user: currUser._id.toString() })
         .then((business) => {
           if (currUser.business.toString() === business._id.toString()) {
             return business;
