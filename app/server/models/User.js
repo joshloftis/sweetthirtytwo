@@ -46,6 +46,10 @@ const UserSchema = new Schema({
   google_token: {
     type: String,
   },
+  version: {
+    type: String,
+    Default: '1',
+  },
 });
 
 const User = mongoose.model('User', UserSchema);

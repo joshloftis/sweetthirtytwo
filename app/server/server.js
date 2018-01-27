@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const { graphqlExpress, graphiqlExpress } = require('graphql-server-express');
+const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 const path = require('path');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
@@ -17,16 +17,17 @@ app.use(morgan('dev'));
 
 app.use('*', cors({ origin: 'http://localhost:3000' }));
 
-app.use('/graphql', bodyParser.json(), jwt({
-  secret: process.env.JWT_SECRET,
-  credentialsRequired: false,
-}), graphqlExpress(req => ({
+app.use('/graphql', bodyParser.json(), graphqlExpress(req => ({
   schema,
   context: {
     user: req.user ?
       db.User.findOne({ _id: req.user.id }) : Promise.resolve(null),
   },
-})));
+})), jwt({
+  secret: process.env.JWT_SECRET,
+  credentialsRequired: false,
+}));
+
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
 }));
