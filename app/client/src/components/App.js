@@ -20,7 +20,7 @@ class App extends Component {
       <div className="gridhome">
         <Header />
         <Avatar />
-        <Cardlayout {...this.props} />
+        <Cardlayout />
       </div>
     );
   }
