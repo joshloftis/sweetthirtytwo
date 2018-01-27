@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import { AUTH_TOKEN } from '../constants';
 import '../css/login.css';
 
 class Login extends React.Component {
@@ -24,42 +23,13 @@ class Login extends React.Component {
         password: this.state.password,
       },
     }).then((user) => {
-      console.log(user);
-      console.log(user.data);
-      console.log(user.data.login);
       const { jwt } = user.data.login;
-      console.log(jwt);
-      // this.saveUserData(jwt);
-      // this.props.history.push('/suite32');
+      this.saveUserData(jwt);
+      this.props.history.push('/suite32');
     }).catch((error) => {
       console.log('Log in did not succeed because:', error);
     });
   }
-
-  // _confirm = async () => {
-  //   const { name, email, password } = this.state;
-  //   if (this.state.login) {
-  //     const result = await this.props.loginMutation({
-  //       variables: {
-  //         email,
-  //         password,
-  //       },
-  //     });
-  //     const { token } = result.data.login;
-  //     this._saveUserData(token);
-  //   } else {
-  //     const result = await this.props.signupMutation({
-  //       variables: {
-  //         name,
-  //         email,
-  //         password,
-  //       },
-  //     });
-  //     const { token } = result.data.signup;
-  //     this._saveUserData(token);
-  //   }
-  //   this.props.history.push('/');
-  // }
 
   handleInputChange(e) {
     const target = e.target;
@@ -71,7 +41,7 @@ class Login extends React.Component {
   }
 
   saveUserData(token) {
-    localStorage.setItem(AUTH_TOKEN, token);
+    localStorage.setItem('token', token);
   }
 
   render() {

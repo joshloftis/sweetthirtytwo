@@ -103,11 +103,7 @@ const resolvers = {
         if (user) {
           return bcrypt.compare(password, user.password).then((res) => {
             if (res) {
-              const token = jwt.sign({
-                id: user.id,
-                email: user.email,
-                version: user.version,
-              }, process.env.JWT_SECRET);
+              const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET);
               user.jwt = token;
               context.user = Promise.resolve(user);
               return user;

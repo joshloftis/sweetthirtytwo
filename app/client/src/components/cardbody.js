@@ -13,6 +13,7 @@ const CardBody = props => (
             src="https://vignette.wikia.nocookie.net/powerlisting/images/7/7a/Daenerys_Targaryen_Game_of_Thrones_Fire_Immunity.jpg/revision/latest?cb=20160629183606"
             className="hideme showme br-100 h3 w3 dib"
             title="Photo of daenerys targaryen"
+            alt="Profile"
           />
           <h4>Customer Name</h4>
           <h5>Show Total Cost/Bill.</h5>

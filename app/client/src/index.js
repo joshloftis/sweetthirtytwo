@@ -1,49 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { ApolloClient } from 'apollo-client';
-import { createHttpLink } from 'apollo-link-http';
-import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
-import { ApolloLink, split } from 'apollo-client-preset';
-import { getMainDefinition } from 'apollo-utilities';
 import App from './components/App';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import NotFound from './components/NotFound';
-import { AUTH_TOKEN } from './constants';
 import './css/index.css';
 
-// const client = new ApolloClient({
-//   link: createHttpLink({ uri: 'http://localhost:4000/graphql' }),
-//   cache: new InMemoryCache(),
-// });
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { setContext } from 'apollo-link-context';
+import { InMemoryCache } from 'apollo-cache-inmemory';
 
-const httpLink = createHttpLink({ uri: 'http://localhost:4000/graphql' });
-
-const middlewareAuthLink = new ApolloLink((operation, forward) => {
-  const token = localStorage.getItem(AUTH_TOKEN);
-  const authorizationHeader = token ? `Bearer ${token}` : null;
-  operation.setContext({
-    headers: {
-      authorization: authorizationHeader,
-    },
-  });
-  return forward(operation);
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4000/graphql',
 });
 
-const httpLinkWithAuthToken = middlewareAuthLink.concat(httpLink);
-
-const link = split(
-  ({ query }) => {
-    const { kind, operation } = getMainDefinition(query);
-    return kind === 'OperationDefinition' && operation === 'subscription';
-  },
-  httpLinkWithAuthToken,
-);
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : null,
+    },
+  };
+});
 
 const client = new ApolloClient({
-  link,
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache(),
 });
 
