@@ -1,0 +1,10 @@
+body   {
+    background: #dcf5ff;
+    
+}
+
+.gridHome {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}

@@ -1,11 +1,14 @@
 .grid {
     display: flex;
     flex-wrap: wrap;
+    width: 79%;
     
 }
 
 .col {
-    width: 32%;
+    width: 22%;
+    margin-left:1.5%;
+    margin-right:1.5%;
 }
 
 .ba {
@@ -64,7 +67,7 @@
 }
 
 .bg-white {
-    background-color: #fff;
+    background-color: #ffffff;
 }
 
 .pa3 {
@@ -81,7 +84,7 @@
 }
 
 .f4 {
-    font-size: 1.25rem;
+    font-size: 1rem;
 }
 
 .f6 {
@@ -102,3 +105,91 @@
         padding: 2rem;
     }
 }
+
+/*=========================================*/
+.viz img {
+    display: none;
+}
+
+.viz:hover img {
+    display: initial;
+    
+    -webkit-animation: slide-down .1s ease-out;
+    -moz-animation: slide-down .1s ease-out;
+}
+
+@-webkit-keyframes slide-down {
+      0% { opacity: 0; -webkit-transform: translateY(-100%); }   
+    100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+@-moz-keyframes slide-down {
+      0% { opacity: 0; -moz-transform: translateY(-100%); }   
+    100% { opacity: 1; -moz-transform: translateY(0); }
+}
+
+
+/*=========================================*/
+.viz h5 {
+    display: none;
+}
+
+.viz:hover h5 {
+    display: initial;
+    
+    -webkit-animation: slide-down .3s ease-out;
+    -moz-animation: slide-down .3s ease-out;
+}
+
+@-webkit-keyframes slide-down {
+      0% { opacity: 0; -webkit-transform: translateY(-100%); }   
+    100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+@-moz-keyframes slide-down {
+      0% { opacity: 0; -moz-transform: translateY(-100%); }   
+    100% { opacity: 1; -moz-transform: translateY(0); }
+}
+
+
+/*=========================================*/
+.viz p {
+    display: none;
+}
+
+.viz:hover p {
+    display: initial;
+    
+    -webkit-animation: slide-down .3s ease-out;
+    -moz-animation: slide-down .3s ease-out;
+}
+
+@-webkit-keyframes slide-down {
+      0% { opacity: 0; -webkit-transform: translateY(-100%); }   
+    100% { opacity: 1; -webkit-transform: translateY(0); }
+}
+@-moz-keyframes slide-down {
+      0% { opacity: 0; -moz-transform: translateY(-100%); }   
+    100% { opacity: 1; -moz-transform: translateY(0); }
+}
+
+.viz p {
+    display: none;
+}
+/*===================================*/
+
+.colorsplit {
+    background: white;
+}
+
+.colorsplit:hover {
+    background: linear-gradient(to top, 
+    white 60%, coral 40%);
+    background: -o-linear-gradient(to bottom, 
+    white 60%, coral 40%);
+    background: -moz-linear-gradient(to bottom, 
+    white 60%, coral 40%);
+    background: -webkit-linear-gradient(to bottom
+    white 60%, coral 40%);
+    background: -ms-linear-gradient(to bottom, 
+    white 60%, coral 40%);
+}
+

@@ -1,11 +1,30 @@
 import React from 'react';
-import App from './App';
+import CardBody from './cardbody';
+
+
 import '../css/cardbody.css';
 
-const Cardlayout = props => {
-    <div className="cardbody">
-        <div className="flexGrid">{props.children}</div>
+const Cardlayout = props => (
+  <div className="grid">
+    <div className="col">
+      <CardBody />
+      <CardBody />
+      <CardBody />
     </div>
-};
- 
+    <div className="col">
+      <CardBody />
+      <CardBody />
+      <CardBody />
+    </div>
+    <div className="col">
+      <CardBody />
+      <CardBody />
+      <CardBody />
+    </div>
+    <div className="col">
+      <CardBody />
+      <CardBody />
+      <CardBody />
+    </div>
+    </div>
 export default Cardlayout;

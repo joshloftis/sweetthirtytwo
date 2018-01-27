@@ -3,7 +3,7 @@ import InputField from './input';
 
 import '../css/cardbody.css';
 
-const Cardlayout = props => {
+const Inputlayout = props => {
     < div className="cardbody" >
         <div className="flexGrid">{props.children}</div>
     < /div>

@@ -9,10 +9,19 @@ const BusinessSchema = new Schema({
   logo: {
     type: String,
   },
-  owner: {
-    type: Schema.Types.ObjectId,
-    ref: 'Owner',
-  },
+  user: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    },
+  ],
+  contracts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Contractee',
+    },
+  ],
 });
 
 const Business = mongoose.model('Business', BusinessSchema);
