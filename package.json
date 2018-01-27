@@ -53,6 +53,7 @@
     "tachyons-type-scale": "^6.1.0",
     "tachyons-typography": "^3.0.5",
     "tachyons-utilities": "^2.0.1",
-    "tachyons-widths": "^5.2.1"
+    "tachyons-widths": "^5.2.1",
+    "yarn": "^1.3.2"
   }
 }
