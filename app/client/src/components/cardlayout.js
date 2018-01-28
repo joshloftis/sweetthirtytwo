@@ -6,7 +6,11 @@ import CardBody from './cardbody';
 import '../css/cardbody.css';
 
 const Cardlayout = props => (
+  <div className="grid">
+    <div className="col">
   <CardBody />
+    </div>
+  </div>
 );
 
 Cardlayout.propTypes = {

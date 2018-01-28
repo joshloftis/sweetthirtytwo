@@ -106,7 +106,7 @@
     }
 }
 
-/*=========================================*/
+/*=========================================
 .viz img {
     display: none;
 }
@@ -128,7 +128,7 @@
 }
 
 
-/*=========================================*/
+/*=========================================
 .viz h5 {
     display: none;
 }
@@ -149,31 +149,6 @@
     100% { opacity: 1; -moz-transform: translateY(0); }
 }
 
-
-/*=========================================*/
-.viz p {
-    display: none;
-}
-
-.viz:hover p {
-    display: initial;
-    
-    -webkit-animation: slide-down .3s ease-out;
-    -moz-animation: slide-down .3s ease-out;
-}
-
-@-webkit-keyframes slide-down {
-      0% { opacity: 0; -webkit-transform: translateY(-100%); }   
-    100% { opacity: 1; -webkit-transform: translateY(0); }
-}
-@-moz-keyframes slide-down {
-      0% { opacity: 0; -moz-transform: translateY(-100%); }   
-    100% { opacity: 1; -moz-transform: translateY(0); }
-}
-
-.viz p {
-    display: none;
-}
 /*===================================*/
 
 .colorsplit {
@@ -193,3 +168,19 @@
     white 60%, coral 40%);
 }
 
+/*===================================*/
+/*===================================*/
+
+.card {
+    display:none;
+    transition: 
+    /* step 1 */
+    display  1s,
+    /* step 2 */
+    background 0.5s 1s;
+}
+  
+  .card:hover {
+    display: initial;
+    background: coral;
+  }
