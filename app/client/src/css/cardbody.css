@@ -169,14 +169,14 @@
 }
 
 /*===================================*/
-/*===================================*/
+/*
 
 .card {
     display:none;
     transition: 
-    /* step 1 */
+    /* step 1 
     display  1s,
-    /* step 2 */
+    /* step 2 
     background 0.5s 1s;
 }
   
@@ -184,3 +184,4 @@
     display: initial;
     background: coral;
   }
+  */
