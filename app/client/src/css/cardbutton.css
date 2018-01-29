@@ -129,16 +129,18 @@
 
 .viz:hover a {
     display: initial;
-    
-    -webkit-animation: slide-down .8s ease-out;
-    -moz-animation: slide-down .8s ease-out;
+    animation-delay: 1.5s;
+    -webkit-animation-delay: 1.5s;
+    -moz-animation-delay: 1.5s;
+    -webkit-animation: bop 1.5s ease-out ;
+    -moz-animation: bop 1.5s ease-out ;
 }
 
-@-webkit-keyframes slide-down {
-      0% { opacity: 0; -webkit-transform: translateY(-100%); }   
-    100% { opacity: 1; -webkit-transform: translateY(0); }
+@-webkit-keyframes bop {
+  0% { opacity: 0; }   
+100% { opacity: 1; }
 }
-@-moz-keyframes slide-down {
-      0% { opacity: 0; -moz-transform: translateY(-100%); }   
-    100% { opacity: 1; -moz-transform: translateY(0); }
+@-moz-keyframes bop {
+  0% { opacity: 0; }   
+100% { opacity: 1; }
 }
