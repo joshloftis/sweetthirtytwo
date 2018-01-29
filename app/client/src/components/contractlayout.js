@@ -5,7 +5,7 @@ import ContractHeaderTwo from './contractheadersecondary';
 
 import '../css/cardbody.css';
 
-const Inputlayout = props => (
+const InputLayout = props => (
     <div className="grid">
         <div className="col">
             <InputField />
@@ -37,4 +37,4 @@ const Inputlayout = props => (
         </div>
     </div>
 );
-export default Inputlayout;
+export default InputLayout;

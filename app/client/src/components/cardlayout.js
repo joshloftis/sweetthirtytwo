@@ -1,7 +1,5 @@
 import React from 'react';
 import CardBody from './cardbody';
-
-
 import '../css/cardbody.css';
 
 const Cardlayout = props => (
