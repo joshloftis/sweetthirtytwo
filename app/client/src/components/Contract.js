@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import '../css/login.css';
 import Header from './navheader';
 import ContractHeader from './contractheader';
+import ContractHeaderTwo from './contractheadersecondary';
 import Avatar from './avatar';
 import '../css/app.css';
 
@@ -67,7 +68,8 @@ class Contract extends React.Component {
         <Avatar />
         <form className="measure center" />
         <div>
-          <form style>
+        <ContractHeader />
+          <form>
             <div className="mt3">
               <label className="db fw6 lh-copy f6" htmlFor="firstname">First Name</label>
               <input
@@ -140,7 +142,8 @@ class Contract extends React.Component {
                 required
               />
             </div>
-          </form>  
+          </form>
+        <ContractHeaderTwo />
         </div>
         <div className="">
           <input onClick={this.onClick} className="spacer b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Save" />
