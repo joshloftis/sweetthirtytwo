@@ -36,8 +36,11 @@ const resolvers = {
         return result;
       });
     },
-    contracts() {
-      return true;
+    contracts({ id }) {
+      return Contractee.find({ business: id }, (err, result) => {
+        if (err) throw err;
+        return result;
+      });
     },
   },
   User: {
@@ -76,6 +79,16 @@ const resolvers = {
     },
   },
   Query: {
+    getUser(root, args, context) {
+      return context.user.then((user) => {
+        console.log(context);
+        if (!user) {
+          console.log(`The user is ${user}`);
+          return Promise.reject(Error('Not a user'));
+        }
+        return User.findById(ObjectId(user._id));
+      });
+    },
     getContracts(root, args, context) {
       return contracteeLogic.getBizContracts(root, args, context)
         .then(contracts => contracts);
