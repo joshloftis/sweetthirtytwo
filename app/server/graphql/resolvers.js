@@ -165,7 +165,7 @@ const resolvers = {
     },
     addPaymentContract(root, args, context) {
       return paymentContractLogic.addPaymentContract(root, args, context)
-        .then(paymentContract => paymentContract);
+        .then(contractee => contractee);
     },
     deleteContract(root, args, context) {
       return contracteeLogic.deleteContract(root, args, context)

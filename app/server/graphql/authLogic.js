@@ -195,6 +195,11 @@ const paymentContractLogic = {
               range,
               terms,
               monthly_payment: ((total + fees) - down_payment - insurance) / range,
+            }).then((payment) => {
+              if (payment) {
+                return Contractee.findById(contractee);
+              }
+              return Promise.reject(Error('Payment contract could not be added.'));
             });
           }
           return Promise.reject(Error('Payment contract cannot be added for this contractee!'));
