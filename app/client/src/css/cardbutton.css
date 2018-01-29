@@ -130,8 +130,8 @@
 .viz:hover a {
     display: initial;
     
-    -webkit-animation: slide-down .3s ease-out;
-    -moz-animation: slide-down .3s ease-out;
+    -webkit-animation: slide-down .8s ease-out;
+    -moz-animation: slide-down .8s ease-out;
 }
 
 @-webkit-keyframes slide-down {
