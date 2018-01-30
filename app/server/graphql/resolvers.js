@@ -36,8 +36,11 @@ const resolvers = {
         return result;
       });
     },
-    contracts() {
-      return true;
+    contracts({ id }) {
+      return Contractee.find({ business: id }, (err, result) => {
+        if (err) throw err;
+        return result;
+      });
     },
   },
   User: {
@@ -76,6 +79,16 @@ const resolvers = {
     },
   },
   Query: {
+    getUser(root, args, context) {
+      return context.user.then((user) => {
+        console.log(context);
+        if (!user) {
+          console.log(`The user is ${user}`);
+          return Promise.reject(Error('Not a user'));
+        }
+        return User.findById(ObjectId(user._id));
+      });
+    },
     getContracts(root, args, context) {
       return contracteeLogic.getBizContracts(root, args, context)
         .then(contracts => contracts);
@@ -103,13 +116,10 @@ const resolvers = {
         if (user) {
           return bcrypt.compare(password, user.password).then((res) => {
             if (res) {
-              const token = jwt.sign({
-                id: user.id,
-                email: user.email,
-                version: user.version,
-              }, process.env.JWT_SECRET);
+              const token = jwt.sign({ id: user.id, email: user.email, version: user.version }, process.env.JWT_SECRET);
               user.jwt = token;
               context.user = Promise.resolve(user);
+              console.log(context);
               return user;
             }
             return Promise.reject(Error('password incorrect'));

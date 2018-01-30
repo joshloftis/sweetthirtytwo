@@ -15,6 +15,22 @@ class Login extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
+  onClick(e) {
+    e.preventDefault();
+    this.props.mutate({
+      variables: {
+        username: this.state.username,
+        password: this.state.password,
+      },
+    }).then((user) => {
+      const { jwt } = user.data.login;
+      this.saveUserData(jwt);
+      this.props.history.push('/suite32');
+    }).catch((error) => {
+      console.log('Log in did not succeed because:', error);
+    });
+  }
+
   handleInputChange(e) {
     const target = e.target;
     const value = target.value;
@@ -24,19 +40,8 @@ class Login extends React.Component {
     });
   }
 
-  onClick(e) {
-    e.preventDefault();
-    this.props.mutate({
-      variables: {
-        username: this.state.username,
-        password: this.state.password,
-      },
-    })
-      .then((owner) => {
-        console.log('Login succeeded', owner.data.login);
-      }).catch((error) => {
-        console.log('Log in did not succeed because:', error);
-      });
+  saveUserData(token) {
+    localStorage.setItem('token', token);
   }
 
   render() {
@@ -48,7 +53,7 @@ class Login extends React.Component {
         <div>
           <form>
             <div className="mt3">
-              <label classNAme="db fw6 lh-copy f6" htmlFor="email-address">Username</label>
+              <label className="db fw6 lh-copy f6" htmlFor="email-address">Username</label>
               <input
                 type="text"
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -94,12 +99,9 @@ class Login extends React.Component {
 }
 
 const LoginMutation = gql`
-    mutation login($username: String, $password: String) {
+    mutation login($username: String!, $password: String!) {
       login(username: $username, password: $password) {
-        _id
-        firstName
-        lastName
-        username
+        jwt
       }
     }
   `;

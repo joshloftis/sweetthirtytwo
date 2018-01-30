@@ -18,15 +18,6 @@ class SignUp extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  handleInputChange(e) {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
-    this.setState({
-      [name]: value,
-    });
-  }
-
   onClick(e) {
     e.preventDefault();
     this.props.mutate({
@@ -39,10 +30,24 @@ class SignUp extends React.Component {
         role: 'owner',
       },
     }).then((user) => {
-      console.log('user added', user.data.signup);
+      const { jwt } = user.data.signup;
+      this.saveUserData(jwt);
+      this.props.history.push('/suite32');
     }).catch((error) => {
-      console.log('No user added because of an error:', error);
+      console.log('Sign up did not succeed because:', error);
     });
+  }
+
+  handleInputChange(e) {
+    const { target } = e;
+    const { value, name } = target;
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  saveUserData(token) {
+    localStorage.setItem('token', token);
   }
 
   render() {
@@ -54,7 +59,7 @@ class SignUp extends React.Component {
         <div>
           <form>
             <div className="mt3">
-              <label classNAme="db fw6 lh-copy f6" htmlFor="firstname">First Name</label>
+              <label className="db fw6 lh-copy f6" htmlFor="firstname">First Name</label>
               <input
                 type="text"
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -66,7 +71,7 @@ class SignUp extends React.Component {
               />
             </div>
             <div className="mt3">
-              <label classNAme="db fw6 lh-copy f6" htmlFor="lastname">Last Name</label>
+              <label className="db fw6 lh-copy f6" htmlFor="lastname">Last Name</label>
               <input
                 type="text"
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -78,7 +83,7 @@ class SignUp extends React.Component {
               />
             </div>
             <div className="mt3">
-              <label classNAme="db fw6 lh-copy f6" htmlFor="email">Email</label>
+              <label className="db fw6 lh-copy f6" htmlFor="email">Email</label>
               <input
                 type="text"
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -90,7 +95,7 @@ class SignUp extends React.Component {
               />
             </div>
             <div className="mt3">
-              <label classNAme="db fw6 lh-copy f6" htmlFor="username">Username</label>
+              <label className="db fw6 lh-copy f6" htmlFor="username">Username</label>
               <input
                 type="text"
                 className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -102,7 +107,7 @@ class SignUp extends React.Component {
               />
             </div>
             <div className="mt3">
-              <label classNAme="db fw6 lh-copy f6" htmlFor="password">Password</label>
+              <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
               <input
                 type="password"
                 className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100"
@@ -130,6 +135,7 @@ const AddNewUser = gql`
         firstName
         lastName
         username
+        jwt
       }
     }
   `;
