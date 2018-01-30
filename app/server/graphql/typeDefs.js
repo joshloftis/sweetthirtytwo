@@ -48,11 +48,12 @@ const typeDefs = [`
     jwt: String
   }
   type Query {
+    getUser: User
     getContracts(businessId: String): [Contractee]
     getContract(businessId: String, contractId: String): Contractee
     getUsers(businessId: String): [User]
     getPaymentContract(contractId: String): PaymentContract
-    getBusiness(userId: String): Business
+    getBusiness(id: String): Business
   }
   type Mutation {
     login(username: String!, password: String!): User
