@@ -1,0 +1,33 @@
+.login-form {
+  margin-top: 100px;
+  background: #FFFFFF;
+  box-shadow: 0 2px 20px 4px rgba(239,239,239,0.93);
+  border-radius: 4px;
+  max-width: 800px;
+  padding: 75px;
+}
+
+label {
+  font-size: 14px;
+  color: #38A3FF;
+}
+
+::placeholder{
+  font-size: 14px;
+  color: red;
+}
+
+.login-button {
+  background: #38A3FF;
+  border: 1px solid #38A3FF;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  padding: 10px;
+  min-width: 100px;
+  cursor: pointer;
+}
+
+.login-button:hover {
+  background: #B7DDFF;
+}

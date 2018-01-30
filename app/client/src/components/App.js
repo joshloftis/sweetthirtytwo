@@ -16,6 +16,18 @@ class App extends React.Component {
   }
 
   render() {
+    console.log(this.props.data.getUser);
+    let cards = null;
+    if (this.props.data.loading) {
+      cards = <h3>Loading contracts...</h3>;
+    } else {
+      cards = this.props.data.getUser.business.contracts.map(contract => (
+        <div className="col-4">
+          <Card />
+        </div>
+      ));
+    }
+
     return (
       <div>
         <NavHeader />
@@ -25,7 +37,9 @@ class App extends React.Component {
           </div>
           <div className="main-card-area col-9">
             <h3>Contracts</h3>
-            <Card />
+            <div className="row">
+              {cards}
+            </div>
           </div>
         </div>
       </div>
