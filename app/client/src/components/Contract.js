@@ -1,5 +1,5 @@
 import React from 'react';
-import {graphql} from 'react-apollo';
+import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import '../css/login.css';
@@ -63,12 +63,12 @@ class Contract extends React.Component {
 
   render() {
     return (
-      <main  className="mainspace black-80">
+      <main className="mainspace black-80">
         <Header />
         <Avatar />
         <form className="measure center" />
         <div>
-        <ContractHeader />
+          <ContractHeader />
           <form>
             <div className="mt3">
               <label className="db fw6 lh-copy f6" htmlFor="firstname">First Name</label>
@@ -143,7 +143,7 @@ class Contract extends React.Component {
               />
             </div>
           </form>
-        <ContractHeaderTwo />
+          <ContractHeaderTwo />
         </div>
         <div className="">
           <input onClick={this.onClick} className="spacer b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" type="submit" value="Save" />

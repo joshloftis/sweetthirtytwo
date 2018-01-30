@@ -5,11 +5,11 @@
   },
   "version": "1.0.0",
   "description": "Suite32 Site",
-  "main": "server/server.js",
+  "main": "app/server/server.js",
   "scripts": {
     "server": "node app/server/server.js",
     "client": "(cd app/client && yarn start)",
-    "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon server/server.js\" \"npm run client\"",
+    "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon app/server/server.js\" \"npm run client\"",
     "test": "echo \"Error: no hello specified\" && exit 1",
     "postinstall": "(cd app/client && yarn install && yarn run build)"
   },
