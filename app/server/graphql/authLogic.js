@@ -12,22 +12,17 @@ const getAuthenticatedUser = context => context.user.then((user) => {
 });
 
 const businessLogic = {
-  addBusiness(root, { name, logo, user }, context) {
+  addBusiness(root, { name, logo }, context) {
     return getAuthenticatedUser(context)
-      .then((currUser) => {
-        if (currUser._id.toString() !== user) {
-          return Promise.reject(Error('Not the authed in user!'));
-        }
-        return Business.create({
-          name,
-          logo,
-          user,
-        }).then((business) => {
-          User.findByIdAndUpdate(user, { $set: { business } }, { upsert: true, new: true })
-            .exec();
-          return business;
-        });
-      });
+      .then(currUser => Business.create({
+        name,
+        logo,
+        user: currUser._id.toString(),
+      }).then((business) => {
+        User.findByIdAndUpdate(currUser._id.toString(), { $set: { business } }, { upsert: true, new: true })
+          .exec();
+        return business;
+      }));
   },
   getBusiness(root, { jwt }, context) {
     return getAuthenticatedUser(context)

@@ -12,3 +12,8 @@ h3 {
 .sideBar {
   height: 100vh;
 }
+
+.no-contracts {
+  margin-left: 15px;
+  color: black;
+}

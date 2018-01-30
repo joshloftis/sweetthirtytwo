@@ -20,6 +20,8 @@ class App extends React.Component {
     let cards = null;
     if (this.props.data.loading) {
       cards = <h3>Loading contracts...</h3>;
+    } else if (this.props.data.getUser.business.contracts.length === 0) {
+      cards = <h3 className="no-contracts">No contracts yet! Add a contract to get started...</h3>;
     } else {
       cards = this.props.data.getUser.business.contracts.map(contract => (
         <div className="col-4">

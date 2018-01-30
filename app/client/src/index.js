@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import App from './components/App';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import AddBusiness from './components/CreateBusiness';
 import NotFound from './components/NotFound';
 import './css/index.css';
 
@@ -37,6 +38,7 @@ const Root = () => (
       <Switch>
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/add_business" component={AddBusiness} />
         <Route exact path="/suite32" component={App} />
         <Route component={NotFound} />
       </Switch>
