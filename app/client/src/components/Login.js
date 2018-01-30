@@ -2,7 +2,6 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import '../css/login.css';
 
 class Login extends React.Component {
   constructor(props) {

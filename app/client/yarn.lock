@@ -1093,6 +1093,10 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
+bootstrap@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.0.0.tgz#ceb03842c145fcc1b9b4e15da2a05656ba68469a"
+
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.8.tgz#c07b211c7c952ec1f8efd51a77ef0d1d3990a292"
@@ -5658,66 +5662,6 @@ table@^4.0.1:
     lodash "^4.17.4"
     slice-ansi "1.0.0"
     string-width "^2.1.1"
-
-tachyons-border-widths@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/tachyons-border-widths/-/tachyons-border-widths-3.0.4.tgz#f4e2f33d102329b0c1427ec5af2ce6fe730ee79a"
-
-tachyons-borders@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/tachyons-borders/-/tachyons-borders-3.0.4.tgz#4d52c19ad3bcb7817a5c1078a2eb9dfb0b3dc40f"
-
-tachyons-clears@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/tachyons-clears/-/tachyons-clears-3.0.4.tgz#8464bfa0394fbad2e6ab97fadf8bc7ecbe2eb695"
-
-tachyons-display@^5.0.4:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/tachyons-display/-/tachyons-display-5.0.4.tgz#9ec6918b0695753b7c296c0a1275c8b214b25b9a"
-
-tachyons-floats@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/tachyons-floats/-/tachyons-floats-3.0.4.tgz#cca5deeeacc94880b801ac79a6bca64708e55e6c"
-
-tachyons-font-weight@^5.0.4:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/tachyons-font-weight/-/tachyons-font-weight-5.0.4.tgz#c95b4feb7f4c18558859bbc9af13197981d18d60"
-
-tachyons-hovers@^2.5.1:
-  version "2.5.1"
-  resolved "https://registry.yarnpkg.com/tachyons-hovers/-/tachyons-hovers-2.5.1.tgz#dabea2935231c102c78fdeb7e384112b51e54ae4"
-
-tachyons-letter-spacing@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/tachyons-letter-spacing/-/tachyons-letter-spacing-3.0.4.tgz#6cd3af529b24e55e577626e6b1e84a4b844ebcfd"
-
-tachyons-links@^3.0.10:
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/tachyons-links/-/tachyons-links-3.0.10.tgz#ce73f8c12a16c9d50dabfc769e28c65bc4bc7747"
-
-tachyons-skins@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/tachyons-skins/-/tachyons-skins-4.1.0.tgz#cd331f695f6ae2c1d06ae21851a7a51a8c695d26"
-
-tachyons-spacing@^6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/tachyons-spacing/-/tachyons-spacing-6.0.4.tgz#54cbd6d902b2a36ab864110754ec9924e09935aa"
-
-tachyons-text-align@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/tachyons-text-align/-/tachyons-text-align-3.1.0.tgz#e3592637afb68498ba846a619e374423e83f0727"
-
-tachyons-text-transform@^4.0.5:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/tachyons-text-transform/-/tachyons-text-transform-4.0.5.tgz#cb6a95691022d761769224b3d18ab2ff329c8e37"
-
-tachyons-type-scale@^6.1.0:
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/tachyons-type-scale/-/tachyons-type-scale-6.1.0.tgz#4566519793457afbb5d5d47568d456c172f0bd7c"
-
-tachyons-widths@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/tachyons-widths/-/tachyons-widths-5.2.1.tgz#4e148086734f9aaad377a2f580c679561f0c0155"
 
 tapable@^0.1.8, tapable@~0.1.8:
   version "0.1.10"

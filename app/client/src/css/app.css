@@ -1,10 +1,14 @@
-body   {
-    background: #dcf5ff;
-    
+.main-card-area {
+  margin-top: 64px;
 }
 
-.gridHome {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+h3 {
+  font-size: 14px;
+  color: #FF386B;
+  margin-top: 22px;
+  margin-bottom: 20px;
+}
+
+.sideBar {
+  height: 100vh;
 }

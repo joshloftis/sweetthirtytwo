@@ -1,0 +1,16 @@
+.contract-button {
+  background: #38A3FF;
+  border: 1px solid #38A3FF;
+  border-radius: 4px;
+  color: white;
+  font-size: 12px;
+  padding: 10px;
+  min-width: 100px;
+  margin-left: 30px;
+  margin-top: 40px;
+  cursor: pointer;
+}
+
+.contract-button:hover {
+  background: #B7DDFF;
+}

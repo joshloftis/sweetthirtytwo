@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Header from './navheader';
-import Cardlayout from './cardlayout';
-import Avatar from './avatar';
+import NavHeader from './NavHeader';
+import SideBar from './SideBar';
+import Card from './Card';
 import '../css/app.css';
 
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,10 +17,17 @@ class App extends Component {
 
   render() {
     return (
-      <div className="gridhome">
-        <Header />
-        <Avatar />
-        <Cardlayout {...this.props} />
+      <div>
+        <NavHeader />
+        <div className="row">
+          <div className="sideBar col-3">
+            <SideBar />
+          </div>
+          <div className="main-card-area col-9">
+            <h3>Contracts</h3>
+            <Card />
+          </div>
+        </div>
       </div>
     );
   }
