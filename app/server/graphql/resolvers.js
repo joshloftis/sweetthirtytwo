@@ -157,6 +157,7 @@ const resolvers = {
         .then(user => user);
     },
     addContractee(root, args, context) {
+      console.log(args);
       return contracteeLogic.addContractee(root, args, context)
         .then(contractee => contractee);
     },

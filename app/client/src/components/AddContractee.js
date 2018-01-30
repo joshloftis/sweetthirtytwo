@@ -40,7 +40,7 @@ class AddContractee extends React.Component {
       if (contractee) {
         return this.props.addPaymentContractMutation({
           variables: {
-            contractee: contractee._id.toString(),
+            contractee: contractee.data.addContractee._id,
             total: this.state.total,
             fees: this.state.fees,
             down_payment: this.state.down_payment,
@@ -48,11 +48,11 @@ class AddContractee extends React.Component {
             range: this.state.range,
             terms: this.state.terms,
           },
-        });
+        }).then(paymentContract => this.props.history.push('/suite32'));
       }
       return Promise.reject(Error('Contractee was not added, so payment terms cannot be added.'));
     }).catch((error) => {
-      console.log('Sign up did not succeed because:', error);
+      console.log('An error:', error);
     });
   }
 
@@ -255,43 +255,36 @@ class AddContractee extends React.Component {
 }
 
 const AddContracteeMutation = gql`
-    mutation addContractee($first_name: String, $last_name: String, $email: String, $address: String, $business: String) {
-      addContractee(first_name: $first_name, last_name: $last_name, email: $email, address: $address, business: $business) {
+ mutation addContractee($first_name: String, $last_name: String, $email: String, $address: String, $business: String) {
+  addContractee(first_name: $first_name, last_name: $last_name, email: $email, address: $address, business: $business) {
         _id
         first_name
         last_name
         email
         address
-        business
       }
     }
   `;
 
 const AddPaymentContractMutation = gql`
-    mutation addPaymentContract($contractee: String, $total: Float, $fees: Float, $down_payment: Float, $insurance: Float, $range: Float, $terms: String) {
-      addPaymentContract(contractee: $contractee, total: $total, fees: $fees, down_payment: $down_payment, insurance: $insurance, range: $range, terms: $terms) {
+    mutation addPaymentContract($contractee: String, $total: Float, $fees: Float, $insurance: Float, $down_payment: Float, $range: Float, $terms: String) {
+      addPaymentContract(contractee: $contractee, total: $total, fees: $fees, insurance: $insurance, down_payment: $down_payment, range: $range, terms: $terms) {
         _id
-        total
-        fees
-        down_payment
-        insurance
-        range
-        terms
       }
     }
 `;
 
 const GetUser = gql`
-    query getUser {
-      getUser {
-        business {
-          _id
-          name
-          logo
-        }
+  query getUser {
+    getUser {
+      business {
+        _id
+        name
+        logo
       }
     }
-  `;
+  }
+`;
 
 AddContractee.propTypes = {
   mutate: PropTypes.func,
