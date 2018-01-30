@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import NavHeader from './NavHeader';
+import NavHeader from './navheader';
 import SideBar from './SideBar';
 import Card from './Card';
 import '../css/app.css';
