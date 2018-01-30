@@ -5,9 +5,17 @@ import '../css/sidebar.css';
 
 const SideBar = props => (
   <div className="sidebar">
-    <Logo />
+    <Logo
+      name={props.name}
+      image={props.logo}
+    />
     <hr />
   </div>
 );
+
+SideBar.propTypes = {
+  name: PropTypes.string.isRequired,
+  logo: PropTypes.string,
+};
 
 module.exports = SideBar;

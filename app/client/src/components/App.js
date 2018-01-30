@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import NavHeader from './NavHeader';
@@ -16,16 +17,27 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.props.data.getUser);
     let cards = null;
+    let sidebar = null;
     if (this.props.data.loading) {
+      sidebar = <h3>Loading...</h3>;
       cards = <h3>Loading contracts...</h3>;
     } else if (this.props.data.getUser.business.contracts.length === 0) {
       cards = <h3 className="no-contracts">No contracts yet! Add a contract to get started...</h3>;
     } else {
+      sidebar = (
+        <SideBar
+          key={this.props.data.getUser.business._id}
+          name={this.props.data.getUser.business.name}
+          image={this.props.data.getUser.business.logo}
+        />
+      );
       cards = this.props.data.getUser.business.contracts.map(contract => (
-        <div className="col-4">
-          <Card />
+        <div key={contract._id} className="col-4">
+          <Card
+            key={contract._id}
+            {...contract}
+          />
         </div>
       ));
     }
@@ -35,7 +47,7 @@ class App extends React.Component {
         <NavHeader />
         <div className="row">
           <div className="sideBar col-3">
-            <SideBar />
+            {sidebar}
           </div>
           <div className="main-card-area col-9">
             <h3>Contracts</h3>
@@ -57,6 +69,7 @@ const GetUser = gql`
       lastName
       business {
         _id
+        logo
         name
         contracts {
           _id
@@ -80,5 +93,10 @@ const GetUser = gql`
     }
   }
 `;
+
+App.propTypes = {
+  data: PropTypes.object,
+  loading: PropTypes.object,
+};
 
 export default graphql(GetUser)(App);

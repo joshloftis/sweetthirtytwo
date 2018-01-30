@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import '../css/navheader.css';
 
 const NavHeader = props => (
@@ -16,5 +16,6 @@ const NavHeader = props => (
     </div>
   </nav>
 );
+
 
 module.exports = NavHeader;
