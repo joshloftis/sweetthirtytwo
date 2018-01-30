@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import CardHeader from './CardHeader';
-import CardBody from './CardBody';
+import CardHeader from './cardheader';
+import CardBody from './cardbody';
 
 const Card = props => (
   <div>

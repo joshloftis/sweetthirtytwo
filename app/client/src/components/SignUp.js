@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import NavHeader from './NavHeader';
+import NavHeader from './navheader';
 
 class SignUp extends React.Component {
   constructor(props) {
