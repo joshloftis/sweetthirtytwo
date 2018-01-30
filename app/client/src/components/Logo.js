@@ -6,7 +6,7 @@ const Logo = props => (
   <div>
     <div className="mx-auto logo-div">
       <img
-        className="logo"
+        className="logo mx-auto d-block"
         src={props.logo}
         alt="Logo"
       />

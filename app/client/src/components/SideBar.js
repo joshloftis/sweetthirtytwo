@@ -7,7 +7,7 @@ const SideBar = props => (
   <div className="sidebar">
     <Logo
       name={props.name}
-      image={props.logo}
+      logo={props.logo}
     />
     <hr />
   </div>

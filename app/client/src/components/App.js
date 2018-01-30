@@ -29,7 +29,7 @@ class App extends React.Component {
         <SideBar
           key={this.props.data.getUser.business._id}
           name={this.props.data.getUser.business.name}
-          image={this.props.data.getUser.business.logo}
+          logo={this.props.data.getUser.business.logo}
         />
       );
       cards = this.props.data.getUser.business.contracts.map(contract => (
