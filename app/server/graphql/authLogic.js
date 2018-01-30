@@ -75,7 +75,7 @@ const userLogic = {
 
 const contracteeLogic = {
   addContractee(root, {
-    first_name, last_name, email, address, business,
+    contract_id, first_name, last_name, email, address, business,
   }, context) {
     return getAuthenticatedUser(context)
       .then(currUser => Contractee.findOne({ email })
@@ -83,7 +83,7 @@ const contracteeLogic = {
           if (!existing) {
             if (currUser.business.toString() === business) {
               return Contractee.create({
-                first_name, last_name, email, address, business,
+                contract_id, first_name, last_name, email, address, business,
               }).then((contractee) => {
                 Business.findByIdAndUpdate(business, { $push: { contracts: contractee } }, { upsert: true, new: true })
                   .exec();

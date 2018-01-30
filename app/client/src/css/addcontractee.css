@@ -31,3 +31,17 @@
   background: white;
   padding: 5px 25px;
 }
+
+.form-row {
+  margin-bottom: 20px;
+}
+
+label {
+  color: #949494;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.payment-section {
+  margin-top: 50px;
+}

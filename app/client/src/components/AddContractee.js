@@ -10,11 +10,17 @@ class AddContractee extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      contractId: Date.now(),
       first_name: '',
       last_name: '',
       email: '',
       address: '',
-      business: '',
+      total: '',
+      fees: '',
+      down_payment: '',
+      insurance: '',
+      range: '',
+      terms: '',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -22,16 +28,29 @@ class AddContractee extends React.Component {
 
   onClick(e) {
     e.preventDefault();
-    this.props.mutate({
+    this.props.addContracteeMutation({
       variables: {
         first_name: this.state.first_name,
         last_name: this.state.last_name,
         email: this.state.email,
         address: this.state.address,
-        business: this.state.business,
+        business: this.props.data.getUser.business._id,
       },
     }).then((contractee) => {
-      this.props.history.push('/add_business');
+      if (contractee) {
+        return this.props.addPaymentContractMutation({
+          variables: {
+            contractee: contractee._id.toString(),
+            total: this.state.total,
+            fees: this.state.fees,
+            down_payment: this.state.down_payment,
+            insurance: this.state.insurance,
+            range: this.state.range,
+            terms: this.state.terms,
+          },
+        });
+      }
+      return Promise.reject(Error('Contractee was not added, so payment terms cannot be added.'));
     }).catch((error) => {
       console.log('Sign up did not succeed because:', error);
     });
@@ -46,34 +65,45 @@ class AddContractee extends React.Component {
   }
 
   render() {
+    let sidebar = null;
+    if (this.props.data.loading) {
+      sidebar = <h3>Loading...</h3>;
+    } else {
+      sidebar = (
+        <SideBar
+          key={this.props.data.getUser.business._id}
+          name={this.props.data.getUser.business.name}
+          logo={this.props.data.getUser.business.logo}
+        />
+      );
+    }
     return (
       <div>
         <NavHeader />
         <div className="row">
           <div className="sideBar col-3">
-            <SideBar />
+            {sidebar}
           </div>
           <div className="col-9">
             <div className="container contractee-form">
-              <hr className="form-hr mx-auto" />
-              <h2 className="form-header text-center"><span className="header-background">Contract Information</span></h2>
-              <hr className="form-hr mx-auto" />
               <form className="mx-auto">
+                <hr className="form-hr mx-auto" />
+                <h2 className="form-header text-center"><span className="header-background">Contract Information</span></h2>
+                <hr className="form-hr mx-auto" />
                 <div className="form-row">
                   <fieldset disabled className="col-4">
                     <div className="form-group">
-                      <label htmlFor="ContractID">Contract ID</label>
                       <input
                         id="ContractID"
                         type="text"
                         className="form-control"
-                        placeholder={Date.now()}
+                        placeholder={this.state.contractId}
                         name="contractId"
                       />
+                      <label htmlFor="ContractID">Contract ID</label>
                     </div>
                   </fieldset>
                   <div className="form-group col-4">
-                    <label htmlFor="first_name">First Name</label>
                     <input
                       id="first_name"
                       type="text"
@@ -84,9 +114,9 @@ class AddContractee extends React.Component {
                       value={this.state.first_name}
                       onChange={this.handleInputChange}
                     />
+                    <label htmlFor="first_name">First Name</label>
                   </div>
                   <div className="form-group col-4">
-                    <label htmlFor="last_name">Last Name</label>
                     <input
                       id="last_name"
                       type="text"
@@ -97,11 +127,11 @@ class AddContractee extends React.Component {
                       value={this.state.last_name}
                       onChange={this.handleInputChange}
                     />
+                    <label htmlFor="last_name">Last Name</label>
                   </div>
                 </div>
                 <div className="form-row">
                   <div className="form-group col-4">
-                    <label htmlFor="email">Email</label>
                     <input
                       id="email"
                       type="email"
@@ -112,9 +142,9 @@ class AddContractee extends React.Component {
                       value={this.state.email}
                       onChange={this.handleInputChange}
                     />
+                    <label htmlFor="email">Email</label>
                   </div>
                   <div className="form-group col-4">
-                    <label htmlFor="address">Address</label>
                     <input
                       id="address"
                       type="text"
@@ -125,6 +155,93 @@ class AddContractee extends React.Component {
                       value={this.state.address}
                       onChange={this.handleInputChange}
                     />
+                    <label htmlFor="address">Address</label>
+                  </div>
+                </div>
+                <div className="payment-section">
+                  <hr className="form-hr mx-auto" />
+                  <h2 className="form-header text-center"><span className="header-background">Payment Terms</span></h2>
+                  <hr className="form-hr mx-auto" />
+                </div>
+                <div className="form-row">
+                  <div className="form-group col-4">
+                    <input
+                      id="total"
+                      type="number"
+                      className="form-control"
+                      placeholder="Total Cost"
+                      name="total"
+                      value={this.state.total}
+                      onChange={this.handleInputChange}
+                    />
+                    <label htmlFor="ContractID">Total</label>
+                  </div>
+                  <div className="form-group col-4">
+                    <input
+                      id="fees"
+                      type="number"
+                      className="form-control"
+                      placeholder="Enter fees"
+                      required="required"
+                      name="fees"
+                      value={this.state.fees}
+                      onChange={this.handleInputChange}
+                    />
+                    <label htmlFor="fees">fees</label>
+                  </div>
+                  <div className="form-group col-4">
+                    <input
+                      id="down_payment"
+                      type="number"
+                      className="form-control"
+                      placeholder="Enter down payment"
+                      required="required"
+                      name="down_payment"
+                      value={this.state.down_payment}
+                      onChange={this.handleInputChange}
+                    />
+                    <label htmlFor="down_payment">down_payment</label>
+                  </div>
+                </div>
+                <div className="form-row">
+                  <div className="form-group col-4">
+                    <input
+                      id="insurance"
+                      type="number"
+                      className="form-control"
+                      placeholder="Insurance coverage amount"
+                      required="required"
+                      name="insurance"
+                      value={this.state.insurance}
+                      onChange={this.handleInputChange}
+                    />
+                    <label htmlFor="insurance">Insurance</label>
+                  </div>
+                  <div className="form-group col-4">
+                    <input
+                      id="range"
+                      type="number"
+                      className="form-control"
+                      placeholder="Months of payment"
+                      required="required"
+                      name="range"
+                      value={this.state.range}
+                      onChange={this.handleInputChange}
+                    />
+                    <label htmlFor="range">Range</label>
+                  </div>
+                  <div className="form-group col-4">
+                    <input
+                      id="terms"
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter payment terms"
+                      required="required"
+                      name="terms"
+                      value={this.state.terms}
+                      onChange={this.handleInputChange}
+                    />
+                    <label htmlFor="terms">Terms</label>
                   </div>
                 </div>
                 <button type="submit" className="login-button" onClick={this.onClick}>Submit</button>
@@ -137,7 +254,7 @@ class AddContractee extends React.Component {
   }
 }
 
-const AddContracteeMutaion = gql`
+const AddContracteeMutation = gql`
     mutation addContractee($first_name: String, $last_name: String, $email: String, $address: String, $business: String) {
       addContractee(first_name: $first_name, last_name: $last_name, email: $email, address: $address, business: $business) {
         _id
@@ -149,6 +266,20 @@ const AddContracteeMutaion = gql`
       }
     }
   `;
+
+const AddPaymentContractMutation = gql`
+    mutation addPaymentContract($contractee: String, $total: Float, $fees: Float, $down_payment: Float, $insurance: Float, $range: Float, $terms: String) {
+      addPaymentContract(contractee: $contractee, total: $total, fees: $fees, down_payment: $down_payment, insurance: $insurance, range: $range, terms: $terms) {
+        _id
+        total
+        fees
+        down_payment
+        insurance
+        range
+        terms
+      }
+    }
+`;
 
 const GetUser = gql`
     query getUser {
@@ -167,4 +298,8 @@ AddContractee.propTypes = {
 };
 
 
-export default compose(graphql(AddContracteeMutaion), graphql(GetUser))(AddContractee);
+export default compose(
+  graphql(AddContracteeMutation, { name: 'addContracteeMutation' }),
+  graphql(AddPaymentContractMutation, { name: 'addPaymentContractMutation' }),
+  graphql(GetUser),
+)(AddContractee);
