@@ -1,0 +1,33 @@
+.container {
+  height: 100vh;
+}
+
+.main-form-area {
+  height: 100vh;
+}
+
+.contractee-form {
+  background: white;
+  padding: 30px;
+  height: 100vh;
+  padding-top: 90px;
+  max-width: 900px;
+}
+
+.form-header {
+  color: #38A3FF;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: -63px;
+}
+
+.form-hr {
+  width: 350px;
+  border: 2px solid #38A3FF;
+  margin-bottom: 50px;
+}
+
+.header-background {
+  background: white;
+  padding: 5px 25px;
+}

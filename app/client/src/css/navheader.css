@@ -1,8 +1,8 @@
-ul>li>p {
+.nav-link {
+  line-height: 1px;
+  text-decoration: none;
   font-size: 11px;
   color: #38A3FF;
-  margin-top:15px;
-  line-height: 1px;
 }
 
 h1 {

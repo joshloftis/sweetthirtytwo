@@ -5,11 +5,11 @@ import '../css/navheader.css';
 const NavHeader = props => (
   <nav className="navbar navbar-expand-lg fixed-top">
     <div className="container-fluid">
-      <h1 className="mx-auto" href="/">Suite32</h1>
+      <h1 className="mx-auto" href="/">SuiteThirtyTwo</h1>
       <div className="d-flex justify-content-end" id="navbarSupportedContent">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <p className="nav-link">+ New Contract</p>
+            <a className="nav-link">+ New Contract</a>
           </li>
         </ul>
       </div>

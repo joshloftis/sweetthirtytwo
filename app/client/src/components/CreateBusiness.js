@@ -39,10 +39,6 @@ class AddBusiness extends React.Component {
     });
   }
 
-  saveUserData(token) {
-    localStorage.setItem('token', token);
-  }
-
   render() {
     return (
       <div>

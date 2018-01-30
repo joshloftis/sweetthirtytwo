@@ -23,6 +23,13 @@ class App extends React.Component {
       sidebar = <h3>Loading...</h3>;
       cards = <h3>Loading contracts...</h3>;
     } else if (this.props.data.getUser.business.contracts.length === 0) {
+      sidebar = (
+        <SideBar
+          key={this.props.data.getUser.business._id}
+          name={this.props.data.getUser.business.name}
+          logo={this.props.data.getUser.business.logo}
+        />
+      );
       cards = <h3 className="no-contracts">No contracts yet! Add a contract to get started...</h3>;
     } else {
       sidebar = (
