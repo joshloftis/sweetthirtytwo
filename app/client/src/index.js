@@ -9,6 +9,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import App from './components/App';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import Contract from './components/Contract';
 import NotFound from './components/NotFound';
 import './css/index.css';
 
@@ -36,6 +37,7 @@ const Root = () => (
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/suite32" component={App} />
+        <Route exact path="/contract" component={Contract} />
         <Route component={NotFound} />
       </Switch>
     </ApolloProvider>

@@ -1,14 +1,17 @@
 {
   "name": "Suite32",
+  "engine": {
+    "node": " >= 6.10.3"
+  },
   "version": "1.0.0",
   "description": "Suite32 Site",
   "main": "server/server.js",
   "scripts": {
-    "server": "node server/server.js",
-    "client": "(cd client && yarn start)",
+    "server": "node app/server/server.js",
+    "client": "(cd app/client && yarn start)",
     "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon server/server.js\" \"npm run client\"",
     "test": "echo \"Error: no hello specified\" && exit 1",
-    "postinstall": "(cd client && yarn install && yarn run build)"
+    "postinstall": "(cd app/client && yarn install && yarn run build)"
   },
   "author": "",
   "license": "ISC",
@@ -41,6 +44,7 @@
     "morgan": "^1.9.0",
     "nodemailer": "^4.4.2",
     "pug": "^2.0.0-rc.4",
+    "react-scripts": "^1.1.0",
     "tachyons-border-colors": "^4.2.3",
     "tachyons-border-radius": "^5.1.3",
     "tachyons-border-widths": "^3.0.4",
@@ -55,6 +59,15 @@
     "tachyons-type-scale": "^6.1.0",
     "tachyons-typography": "^3.0.5",
     "tachyons-utilities": "^2.0.1",
-    "tachyons-widths": "^5.2.1"
+    "tachyons-widths": "^5.2.1",
+    "yarn": "^1.3.2",
+    "babel-eslint": "^8.2.1",
+    "concurrently": "^3.5.0",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.5.1",
+    "nodemon": "^1.11.0"
   }
 }

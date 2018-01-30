@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CardBody from './cardbody';
-
-
 import '../css/cardbody.css';
 
 const Cardlayout = ({ data: { loading, error, getUser } }) => {
