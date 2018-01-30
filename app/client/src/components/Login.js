@@ -80,11 +80,14 @@ class Login extends React.Component {
               value="Sign in"
             />
           </div>
+          <div class="g-signin2" id="google" data-onsuccess="onSignIn" data-theme="dark">login with Google</div>
+
           <div className="lh-copy mt3">
             <a href="#0" className="f6 link dim black db">Sign Up</a>
             <a href="#0" className="f6 link dim black db">Forgot your password?</a>
           </div>
         </div>
+
       </main>
     );
   }

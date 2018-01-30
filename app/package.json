@@ -4,9 +4,9 @@
   "description": "Suite32 Site",
   "main": "server/server.js",
   "scripts": {
-    "server": "node server/server.js",
+    "server": "nodemon server/server.js",
     "client": "cd client && npm run start",
-    "start": "./node_modules/.bin/concurrently \"./node_modules/.bin/nodemon\" \"npm run client\"",
+    "start": "./node_modules/.bin/concurrently  \"npm run client\" \" npm run server\"",
     "build": "cd client && npm run build",
     "deploy": "yarn build && git add . && git commit -m \"Building for production\" && git push heroku master",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,6 +24,7 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
