@@ -45,7 +45,7 @@ app.use('/graphiql', graphiqlExpress({
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/suite_thirty_two';
 //
 //
-const databaseUri = 'mongo://localhost:3000';
+const databaseUri = 'mongodb://localhost/suite_thirty_two';
 
 if (process.env.MONGODB_URI) {
   mongoose.connect(process.env.MONGODB_URI);
