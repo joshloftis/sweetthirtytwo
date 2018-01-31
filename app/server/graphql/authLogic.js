@@ -105,10 +105,10 @@ const contracteeLogic = {
         return Promise.reject(Error('You cannot get contracts for this business!'));
       });
   },
-  getBizContract(root, { businessId, contractId }, context) {
+  getBizContract(root, { contractId }, context) {
     return getAuthenticatedUser(context)
       .then((currUser) => {
-        if (currUser.business.toString() === businessId) {
+        if (currUser) {
           return Contractee.findOne({ _id: contractId })
             .then(contract => contract);
         }

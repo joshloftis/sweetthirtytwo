@@ -1,15 +1,15 @@
 .container {
-  height: 100vh;
+  height: 100%;
 }
 
 .main-form-area {
-  height: 100vh;
+  height: 100%;
 }
 
 .contractee-form {
   background: white;
   padding: 30px;
-  height: 100vh;
+  height: 100%;
   padding-top: 90px;
   max-width: 900px;
 }

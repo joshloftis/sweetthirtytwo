@@ -50,7 +50,7 @@ const typeDefs = [`
   type Query {
     getUser: User
     getContracts(businessId: String): [Contractee]
-    getContract(businessId: String, contractId: String): Contractee
+    getContract(contractId: String): Contractee
     getUsers(businessId: String): [User]
     getPaymentContract(contractId: String): PaymentContract
     getBusiness(id: String): Business
