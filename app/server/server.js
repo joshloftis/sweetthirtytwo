@@ -17,6 +17,7 @@ app.use(morgan('dev'));
 
 app.use('*', cors({ origin: 'http://localhost:3000' }));
 
+
 app.use(
   '/graphql',
   bodyParser.json(),
@@ -42,6 +43,17 @@ app.use('/graphiql', graphiqlExpress({
 }));
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/suite_thirty_two';
+//
+//
+const databaseUri = 'mongo://localhost:3000';
+
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI);
+} else {
+  mongoose.connect(databaseUri);
+}
+//
+//
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
@@ -59,3 +71,5 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
+
+
