@@ -42,7 +42,7 @@ app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
 }));
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/suite_thirty_two';
+
 //
 //
 const databaseUri = 'mongodb://localhost/suite_thirty_two';
@@ -52,8 +52,19 @@ if (process.env.MONGODB_URI) {
 } else {
   mongoose.connect(databaseUri);
 }
+const db = mongoose.connection;
+
+db.on('error', function(err) {
+  console.log('mongo error: ', err);
+});
+
+db.once('open', function() {
+  console.log('Mongo connection successful');
+});
 //
 //
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/suite_thirty_two';
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGODB_URI, {
@@ -71,5 +82,3 @@ app.get('*', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
-
-
