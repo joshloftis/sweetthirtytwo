@@ -44,23 +44,24 @@ app.use('/graphiql', graphiqlExpress({
 
 
 //
+//following mlab sop for connection.  never verified working.
 //
-const databaseUri = 'mongodb://localhost/suite_thirty_two';
+// const databaseUri = 'mongodb://localhost/suite_thirty_two';
 
-if (process.env.MONGODB_URI) {
-  mongoose.connect(process.env.MONGODB_URI);
-} else {
-  mongoose.connect(databaseUri);
-}
-const db = mongoose.connection;
+// if (process.env.MONGODB_URI) {
+//   mongoose.connect(process.env.MONGODB_URI);
+// } else {
+//   mongoose.connect(databaseUri);
+// }
+// const db = mongoose.connection;
 
-db.on('error', function(err) {
-  console.log('mongo error: ', err);
-});
+// db.on('error', function(err) {
+//   console.log('mongo error: ', err);
+// });
 
-db.once('open', function() {
-  console.log('Mongo connection successful');
-});
+// db.once('open', function() {
+//   console.log('Mongo connection successful');
+// });
 //
 //
 
