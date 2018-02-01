@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
-app.use('/auth', require('./routes/auth-routes.js'));
+app.use('/auth', require('./auth-routes/auth.js'));
 
 app.use('/api', jwtExp({ secret: process.env.JWT_SECRET }));
 
@@ -54,6 +54,7 @@ app.use(
   jwtExp({
     secret: process.env.JWT_SECRET,
     credentialsRequired: false,
+
   }),
   graphqlExpress(req => ({
     schema,
