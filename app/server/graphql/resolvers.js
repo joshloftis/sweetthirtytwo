@@ -109,45 +109,6 @@ const resolvers = {
     },
   },
   Mutation: {
-    login(root, { username, password }, context) {
-      return User.findOne({ username }).then((user) => {
-        if (user) {
-          return bcrypt.compare(password, user.password).then((res) => {
-            if (res) {
-              const token = jwt.sign({ id: user.id, email: user.email, version: user.version }, process.env.JWT_SECRET);
-              user.jwt = token;
-              context.user = Promise.resolve(user);
-              return user;
-            }
-            return Promise.reject(Error('password incorrect'));
-          });
-        }
-        return Promise.reject(Error('username not found'));
-      });
-    },
-    signup(root, {
-      firstName, lastName, email, username, password,
-    }, context) {
-      return User.findOne({ username }).then((existing) => {
-        if (!existing) {
-          return bcrypt.hash(password, 10).then(hash => User.create({
-            firstName,
-            lastName,
-            email,
-            password: hash,
-            username,
-            role: 'owner',
-          })).then((user) => {
-            const { id } = user;
-            const token = jwt.sign({ id, email }, process.env.JWT_SECRET);
-            user.jwt = token;
-            context.user = Promise.resolve(user);
-            return user;
-          });
-        }
-        return Promise.reject(Error('Username already exists!'));
-      });
-    },
     addBusiness(root, args, context) {
       return businessLogic.addBusiness(root, args, context)
         .then(business => business);

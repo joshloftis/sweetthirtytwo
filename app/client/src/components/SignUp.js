@@ -1,7 +1,6 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
+import auth from '../utils/auth';
+// import PropTypes from 'prop-types';
 import NavHeader from './NavHeader';
 
 class SignUp extends React.Component {
@@ -17,21 +16,20 @@ class SignUp extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  onClick(e) {
-    e.preventDefault();
-    this.props.mutate({
-      variables: {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        username: this.state.email,
-        password: this.state.password,
-        role: 'owner',
-      },
-    }).then((user) => {
-      const { jwt } = user.data.signup;
-      this.saveUserData(jwt);
-      this.props.history.push('/add_business');
+  onClick(event) {
+    event.preventDefault();
+    auth.signup({
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      username: this.state.email,
+      password: this.state.password,
+      role: 'owner',
+    }).then((newUser) => {
+      console.log(newUser);
+      if (newUser) {
+        this.props.history.push('/add_business');
+      }
     }).catch((error) => {
       console.log('Sign up did not succeed because:', error);
     });
@@ -43,10 +41,6 @@ class SignUp extends React.Component {
     this.setState({
       [name]: value,
     });
-  }
-
-  saveUserData(token) {
-    localStorage.setItem('token', token);
   }
 
   render() {
@@ -115,21 +109,4 @@ class SignUp extends React.Component {
   }
 }
 
-const AddNewUser = gql`
-    mutation signup($firstName: String, $lastName: String, $username: String, $password: String, $email: String, $role: String) {
-      signup(firstName: $firstName, lastName: $lastName, username: $username, password: $password, email: $email, role: $role) {
-        _id
-        firstName
-        lastName
-        username
-        jwt
-      }
-    }
-  `;
-
-SignUp.propTypes = {
-  mutate: PropTypes.func,
-};
-
-
-export default graphql(AddNewUser)(SignUp);
+export default SignUp;

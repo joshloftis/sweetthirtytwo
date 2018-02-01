@@ -6,14 +6,11 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 
-const exphbs = require('express-handlebars');
-
 const morgan = require('morgan');
 const cors = require('cors');
 const path = require('path');
 const dotenv = require('dotenv').config();
 
-// Requiring our models for syncing
 const db = require('./models');
 const schema = require('./graphql/schema');
 
@@ -21,16 +18,10 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(morgan('dev'));
 
-app.use('*', cors());
+app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
 
-app.set('views', 'app/server/views');
-app.engine('handlebars', exphbs({}));
-app.set('view engine', 'handlebars');
-
-// I don't care about your HTTP Method
 app.use(cookieParser(process.env.JWT_SECRET));
 
-// Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
@@ -38,31 +29,9 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 app.use('/auth', require('./routes/auth-routes.js'));
 
-app.get('/', jwtExp({
-  secret: process.env.JWT_SECRET,
-  getToken: function fromCookie(req) {
-    if (req.signedCookies) {
-      return req.signedCookies.jwtAuthToken;
-    }
-    return null;
-  },
-  credentialsRequired: false,
-}), (req, res, next) => {
-  // if user is signed-in, next()
-  if (req.user) {
-    next();
-  } else {
-    res.redirect('/auth/sign-in');
-  }
-});
-
 app.use(
   '/graphql',
   bodyParser.json(),
-  jwtExp({
-    secret: process.env.JWT_SECRET,
-    credentialsRequired: false,
-  }),
   graphqlExpress(req => ({
     schema,
     context: {
@@ -72,6 +41,12 @@ app.use(
   })),
   jwtExp({
     secret: process.env.JWT_SECRET,
+    getToken: function fromCookie(req) {
+      if (req.signedCookies) {
+        return req.signedCookies.jwtAuthToken;
+      }
+      return null;
+    },
     credentialsRequired: false,
   }),
 );

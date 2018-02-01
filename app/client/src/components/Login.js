@@ -15,30 +15,17 @@ class Login extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  // onClick(e) {
-  //   e.preventDefault();
-  //   this.props.mutate({
-  //     variables: {
-  //       username: this.state.username,
-  //       password: this.state.password,
-  //     },
-  //   }).then((user) => {
-  //     const { jwt } = user.data.login;
-  //     this.saveUserData(jwt);
-  //     this.props.history.push('/suite32');
-  //   }).catch((error) => {
-  //     console.log('Log in did not succeed because:', error);
-  //   });
-  // }
-
   onClick(event) {
     event.preventDefault();
     if (this.state.username && this.state.password) {
       auth.login({
         username: this.state.username,
         password: this.state.password,
-      }).then(() => {
-        this.props.history.push('/suite32');
+      }).then((res) => {
+        console.log(res);
+        if (!res.data.error) {
+          this.props.history.push('/suite32');
+        }
       }).catch((error) => {
         console.log('Log in did not succeed because:', error);
       });
