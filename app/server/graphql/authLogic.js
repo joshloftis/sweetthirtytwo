@@ -8,6 +8,7 @@ const getAuthenticatedUser = context => context.user.then((user) => {
   if (!user) {
     return Promise.reject(Error('Unauthorized'));
   }
+  console.log(`THIS IS THE USER: ${user}`);
   return user;
 });
 

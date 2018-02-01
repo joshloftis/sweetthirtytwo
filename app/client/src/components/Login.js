@@ -1,8 +1,7 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
-import PropTypes from 'prop-types';
-import NavHeader from './navheader';
+import auth from '../utils/auth';
+// import PropTypes from 'prop-types';
+import NavHeader from './NavHeader';
 import '../css/login.css';
 
 class Login extends React.Component {
@@ -16,20 +15,21 @@ class Login extends React.Component {
     this.onClick = this.onClick.bind(this);
   }
 
-  onClick(e) {
-    e.preventDefault();
-    this.props.mutate({
-      variables: {
+  onClick(event) {
+    event.preventDefault();
+    if (this.state.username && this.state.password) {
+      auth.login({
         username: this.state.username,
         password: this.state.password,
-      },
-    }).then((user) => {
-      const { jwt } = user.data.login;
-      this.saveUserData(jwt);
-      this.props.history.push('/suite32');
-    }).catch((error) => {
-      console.log('Log in did not succeed because:', error);
-    });
+      }).then((res) => {
+        console.log(res);
+        if (!res.data.error) {
+          this.props.history.push('/suite32');
+        }
+      }).catch((error) => {
+        console.log('Log in did not succeed because:', error);
+      });
+    }
   }
 
   handleInputChange(e) {
@@ -39,10 +39,6 @@ class Login extends React.Component {
     this.setState({
       [name]: value,
     });
-  }
-
-  saveUserData(token) {
-    localStorage.setItem('token', token);
   }
 
   render() {
@@ -85,17 +81,4 @@ class Login extends React.Component {
   }
 }
 
-const LoginMutation = gql`
-    mutation login($username: String!, $password: String!) {
-      login(username: $username, password: $password) {
-        jwt
-      }
-    }
-  `;
-
-Login.propTypes = {
-  mutate: PropTypes.func,
-};
-
-
-export default graphql(LoginMutation)(Login);
+export default Login;

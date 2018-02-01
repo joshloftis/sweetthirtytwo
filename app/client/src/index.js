@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
-import { ApolloLink, concat } from 'apollo-link';
+import { concat } from 'apollo-link';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { onError } from 'apollo-link-error';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './components/App';
 import Login from './components/Login';
@@ -16,20 +17,19 @@ import NotFound from './components/NotFound';
 import './css/index.css';
 
 
-const httpLink = createHttpLink({ uri: 'http://localhost:4000/graphql' });
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4000/graphql',
+  credentials: 'include',
+});
 
-const authMiddleware = new ApolloLink((operation, forward) => {
-  operation.setContext({
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}` || null,
-    },
-  });
-
-  return forward(operation);
+const errorLink = onError(({ networkError }) => {
+  if (networkError.statusCode === 500) {
+    console.log(networkError);
+  }
 });
 
 const client = new ApolloClient({
-  link: concat(authMiddleware, httpLink),
+  link: concat(errorLink, httpLink),
   cache: new InMemoryCache(),
 });
 
