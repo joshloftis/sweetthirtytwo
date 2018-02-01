@@ -32,17 +32,6 @@ app.use('/auth', require('./routes/auth-routes.js'));
 app.use(
   '/graphql',
   bodyParser.json(),
-  jwtExp({
-    secret: process.env.JWT_SECRET,
-    getToken: function fromCookie(req) {
-      if (req.signedCookies) {
-        console.log(req.signedCookies.jwtAuthToken);
-        return req.signedCookies.jwtAuthToken;
-      }
-      return undefined;
-    },
-    credentialsRequired: false,
-  }),
   graphqlExpress(req => ({
     schema,
     context: {
@@ -51,6 +40,16 @@ app.use(
       // db.User.findOne({ _id: req.data.userId }) : undefined,
     },
   })),
+  jwtExp({
+    secret: process.env.JWT_SECRET,
+    getToken: function fromCookie(req) {
+      if (req.signedCookies) {
+        return req.signedCookies.jwtAuthToken;
+      }
+      return console.log('FUCK MY LIFE!!!!!!');
+    },
+    credentialsRequired: false,
+  }),
 );
 
 app.use('/graphiql', graphiqlExpress({
