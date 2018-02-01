@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(morgan('dev'));
 
-app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use('*', cors({ credentials: true, origin: 'http://localhost:3000' }));
 
 app.use(cookieParser(process.env.JWT_SECRET));
 
@@ -32,6 +32,16 @@ app.use('/auth', require('./routes/auth-routes.js'));
 app.use(
   '/graphql',
   bodyParser.json(),
+  jwtExp({
+    secret: process.env.JWT_SECRET,
+    getToken: function fromCookie(req) {
+      if (req.signedCookies) {
+        return req.signedCookies.jwtAuthToken;
+      }
+      return undefined;
+    },
+    credentialsRequired: false,
+  }),
   graphqlExpress(req => ({
     schema,
     context: {
@@ -40,16 +50,6 @@ app.use(
       // db.User.findOne({ _id: req.data.userId }) : undefined,
     },
   })),
-  jwtExp({
-    secret: process.env.JWT_SECRET,
-    getToken: function fromCookie(req) {
-      if (req.signedCookies) {
-        return req.signedCookies.jwtAuthToken;
-      }
-      return console.log('FUCK MY LIFE!!!!!!');
-    },
-    credentialsRequired: false,
-  }),
 );
 
 app.use('/graphiql', graphiqlExpress({
