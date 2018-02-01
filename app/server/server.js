@@ -21,7 +21,7 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(morgan('dev'));
 
-app.use('*', cors({ origin: 'http://localhost:3000' }));
+app.use('*', cors());
 
 app.set('views', 'app/server/views');
 app.engine('handlebars', exphbs({}));
