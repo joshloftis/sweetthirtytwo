@@ -29,6 +29,7 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 app.use('/auth', require('./routes/auth-routes.js'));
 
+
 app.use(
   '/graphql',
   bodyParser.json(),
@@ -55,6 +56,29 @@ app.use(
 app.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
 }));
+
+
+//
+//following mlab sop for connection.  never verified working.
+//
+// const databaseUri = 'mongodb://localhost/suite_thirty_two';
+
+// if (process.env.MONGODB_URI) {
+//   mongoose.connect(process.env.MONGODB_URI);
+// } else {
+//   mongoose.connect(databaseUri);
+// }
+// const db = mongoose.connection;
+
+// db.on('error', function(err) {
+//   console.log('mongo error: ', err);
+// });
+
+// db.once('open', function() {
+//   console.log('Mongo connection successful');
+// });
+//
+//
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/suite_thirty_two';
 
