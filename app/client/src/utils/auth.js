@@ -9,6 +9,10 @@ export default {
     });
   },
   signup(signupInfo) {
-    return axios.post('http://localhost:4000/auth/sign-up', signupInfo);
+    return axios('http://localhost:4000/auth/sign-up', {
+      method: 'post',
+      data: signupInfo,
+      withCredentials: true,
+    });
   },
 };
