@@ -5,6 +5,7 @@ const {
 } = require('../models/index');
 
 const getAuthenticatedUser = context => context.user.then((user) => {
+  console.log(context);
   if (!user) {
     return Promise.reject(Error('Unauthorized'));
   }

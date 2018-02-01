@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
-import NavHeader from './navheader';
+import NavHeader from './NavHeader';
 import '../css/login.css';
 
 class AddBusiness extends React.Component {
@@ -81,7 +81,9 @@ class AddBusiness extends React.Component {
 
 const AddBusinessMutation = gql`
     mutation addBusiness($name: String, $logo: String) {
-      addBusiness(name: $name, logo: $logo)
+      addBusiness(name: $name, logo: $logo) {
+        _id
+      }
     }
   `;
 

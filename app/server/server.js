@@ -18,7 +18,10 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(morgan('dev'));
 
-app.use('*', cors({ credentials: true, origin: 'http://localhost:3000' }));
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true,
+}));
 
 app.use(cookieParser(process.env.JWT_SECRET));
 
@@ -29,26 +32,24 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 app.use('/auth', require('./routes/auth-routes.js'));
 
+app.use('*', jwtExp({
+  secret: process.env.JWT_SECRET,
+  getToken: function fromCookie(req) {
+    if (req.signedCookies) {
+      return req.signedCookies.jwtAuthToken;
+    }
+    return null;
+  },
+  credentialsRequired: true,
+}));
 
 app.use(
   '/graphql',
-  bodyParser.json(),
-  jwtExp({
-    secret: process.env.JWT_SECRET,
-    getToken: function fromCookie(req) {
-      if (req.signedCookies) {
-        return req.signedCookies.jwtAuthToken;
-      }
-      return undefined;
-    },
-    credentialsRequired: false,
-  }),
   graphqlExpress(req => ({
     schema,
     context: {
       user: req.user ?
-        console.log(req.data.userId) : console.log(req.data.userId),
-      // db.User.findOne({ _id: req.data.userId }) : undefined,
+        db.User.findOne({ _id: req.user.data.userId }) : undefined,
     },
   })),
 );
@@ -59,7 +60,7 @@ app.use('/graphiql', graphiqlExpress({
 
 
 //
-//following mlab sop for connection.  never verified working.
+// following mlab sop for connection.  never verified working.
 //
 // const databaseUri = 'mongodb://localhost/suite_thirty_two';
 

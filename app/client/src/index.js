@@ -3,10 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
-import { concat } from 'apollo-link';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import { onError } from 'apollo-link-error';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './components/App';
 import Login from './components/Login';
@@ -22,14 +20,8 @@ const httpLink = createHttpLink({
   credentials: 'include',
 });
 
-const errorLink = onError(({ networkError }) => {
-  if (networkError.statusCode === 500) {
-    console.log(networkError);
-  }
-});
-
 const client = new ApolloClient({
-  link: concat(errorLink, httpLink),
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 

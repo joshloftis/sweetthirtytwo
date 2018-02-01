@@ -3,10 +3,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import '../css/login.css';
-import Header from './navheader';
-import ContractHeader from './contractheader';
-import ContractHeaderTwo from './contractheadersecondary';
-import Avatar from './avatar';
+import Header from './NavHeader';
 import '../css/app.css';
 
 
