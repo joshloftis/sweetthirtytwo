@@ -80,12 +80,8 @@ class AddBusiness extends React.Component {
 }
 
 const AddBusinessMutation = gql`
-    mutation addBusiness($name: String!, $logo: String!) {
-      addBusiness(name: $name, logo: $logo) {
-        _id
-        name
-        logo
-      }
+    mutation addBusiness($name: String, $logo: String) {
+      addBusiness(name: $name, logo: $logo)
     }
   `;
 
