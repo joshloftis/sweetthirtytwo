@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { ApolloProvider } from 'react-apollo';
 import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
+import { onError } from 'apollo-link-error';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './components/App';
 import Login from './components/Login';
@@ -20,8 +21,14 @@ const httpLink = createHttpLink({
   credentials: 'include',
 });
 
+const unauthorizedAccess = onError(({ networkError }) => {
+  if (networkError.statusCode === 401) {
+    return <Redirect to="/login" />;
+  }
+});
+
 const client = new ApolloClient({
-  link: httpLink,
+  link: unauthorizedAccess.concat(httpLink),
   cache: new InMemoryCache(),
 });
 

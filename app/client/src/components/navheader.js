@@ -10,7 +10,7 @@ const NavHeader = props => (
       <div className="d-flex justify-content-end" id="navbarSupportedContent">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link to="/add_contractee">+ New Contract</Link>
+            <Link to="/add_contractee"><span className="nav-link">+ New Contract</span></Link>
           </li>
         </ul>
       </div>
