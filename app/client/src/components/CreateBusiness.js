@@ -1,5 +1,6 @@
 import React from 'react';
-import { graphql } from 'react-apollo';
+import { Redirect } from 'react-router-dom';
+import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import NavHeader from './NavHeader';
@@ -18,7 +19,7 @@ class AddBusiness extends React.Component {
 
   onClick(e) {
     e.preventDefault();
-    this.props.mutate({
+    this.props.AddBussinessMutation({
       variables: {
         name: this.state.name,
         logo: this.state.logo,
@@ -40,9 +41,16 @@ class AddBusiness extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <NavHeader />
+    let add = null;
+    console.log(this.props.data.getBusiness);
+    if (this.props.data.loading) {
+      add = <h3>Loading...</h3>;
+    } else if (this.props.data.getBusiness) {
+      return (
+        <Redirect to="/suite32" />
+      );
+    } else {
+      add = (
         <div className="container">
           <form className="mx-auto login-form">
             <div className="form-group">
@@ -74,6 +82,12 @@ class AddBusiness extends React.Component {
             <button type="submit" className="login-button" onClick={this.onClick}>Submit</button>
           </form>
         </div>
+      );
+    }
+    return (
+      <div>
+        <NavHeader />
+        {add}
       </div>
     );
   }
@@ -87,9 +101,19 @@ const AddBusinessMutation = gql`
     }
   `;
 
+const GetABusiness = gql`
+    query GetBusiness {
+      getBusiness {
+        _id
+      }
+    }
+`;
+
 AddBusiness.propTypes = {
   mutate: PropTypes.func,
 };
 
-
-export default graphql(AddBusinessMutation)(AddBusiness);
+export default compose(
+  graphql(AddBusinessMutation, { name: 'AddBussinessMutation' }),
+  graphql(GetABusiness),
+)(AddBusiness);

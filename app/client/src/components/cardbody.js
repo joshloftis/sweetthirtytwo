@@ -4,23 +4,20 @@ import CardButtons from './CardButtons';
 import '../css/cardbody.css';
 import { formatPrice } from '../helpers';
 
-const CardBody = (props) => {
-  console.log(props);
-  return (
-    <div className="cardBody">
-      <div>
-        <h3 className="contractee-name text-center">{props.first_name} {props.last_name}</h3>
-        <h4 className="total text-center">Total Cost</h4>
-        <h4 className="total-cost text-center">{formatPrice(props.total)}</h4>
-      </div>
-      <div>
-        <CardButtons
-          contract_id={props}
-        />
-      </div>
+const CardBody = props => (
+  <div className="cardBody">
+    <div>
+      <h3 className="contractee-name text-center">{props.first_name} {props.last_name}</h3>
+      <h4 className="total text-center">Total Cost</h4>
+      <h4 className="total-cost text-center">{formatPrice(props.total)}</h4>
     </div>
-  );
-};
+    <div>
+      <CardButtons
+        contract_id={props}
+      />
+    </div>
+  </div>
+);
 
 CardBody.propTypes = {
   first_name: PropTypes.string.isRequired,

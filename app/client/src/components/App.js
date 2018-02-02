@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -106,4 +107,4 @@ App.propTypes = {
   loading: PropTypes.object,
 };
 
-export default graphql(GetUser)(App);
+export default withRouter(graphql(GetUser)(App));

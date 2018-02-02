@@ -3,3 +3,16 @@
   padding: 60px;
   height: 100vh;
 }
+
+.logout {
+  font-size: 11px;
+  position: fixed;
+  bottom:40px;
+  cursor: pointer;
+  color: #FF386B;
+  transition: 0.5s;
+}
+
+.logout:hover {
+  transform: scale(1.1);
+}

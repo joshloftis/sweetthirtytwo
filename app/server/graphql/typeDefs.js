@@ -53,7 +53,7 @@ const typeDefs = [`
     getContract(businessId: String, contractId: String): Contractee
     getUsers(businessId: String): [User]
     getPaymentContract(contractId: String): PaymentContract
-    getBusiness(id: String): Business
+    getBusiness: Business
   }
   type Mutation {
     addBusiness(name: String, logo: String): Business

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
@@ -21,6 +22,7 @@ class AddContractee extends React.Component {
       insurance: '',
       range: '',
       terms: '',
+      fireRedirect: false,
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.onClick = this.onClick.bind(this);
@@ -48,7 +50,7 @@ class AddContractee extends React.Component {
             range: this.state.range,
             terms: this.state.terms,
           },
-        }).then(paymentContract => this.props.history.push('/suite32'));
+        }).then(paymentContract => this.setState({ fireRedirect: true }));
       }
       return Promise.reject(Error('Contractee was not added, so payment terms cannot be added.'));
     }).catch((error) => {
@@ -65,6 +67,7 @@ class AddContractee extends React.Component {
   }
 
   render() {
+    const { fireRedirect } = this.state;
     let sidebar = null;
     if (this.props.data.loading) {
       sidebar = <h3>Loading...</h3>;
@@ -86,7 +89,7 @@ class AddContractee extends React.Component {
           </div>
           <div className="col-9">
             <div className="container contractee-form">
-              <form className="mx-auto">
+              <form className="mx-auto add-contractee-form">
                 <hr className="form-hr mx-auto" />
                 <h2 className="form-header text-center"><span className="header-background">Contract Information</span></h2>
                 <hr className="form-hr mx-auto" />
@@ -246,6 +249,9 @@ class AddContractee extends React.Component {
                 </div>
                 <button type="submit" className="login-button" onClick={this.onClick}>Submit</button>
               </form>
+              {fireRedirect && (
+              <Redirect to="/suite32" />
+              )}
             </div>
           </div>
         </div>

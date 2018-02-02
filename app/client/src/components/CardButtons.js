@@ -14,13 +14,16 @@ class CardButtons extends React.Component {
   onClick(e) {
     e.preventDefault();
     this.props.mutate({
-      contracteeId: this.props.contract_id.contract_id,
-    }).then(message => message)
-      .catch(err => err);
+      variables: {
+        contracteeId: this.props.contract_id.contract_id,
+      },
+    }).then((message) => {
+      console.log(message);
+      this.props.history.push('/suite32');
+    }).catch(err => err);
   }
 
   render() {
-    console.log(this.props.contract_id.contract_id);
     return (
       <div className="mx-auto">
         <button className="contract-button" >Review</button>
@@ -33,7 +36,7 @@ class CardButtons extends React.Component {
 const deleteAContract = gql`
   mutation deleteContract($contracteeId: String) {
     deleteContract(contracteeId: $contracteeId) {
-      deleteMessage
+      message
     }
   }
 `;

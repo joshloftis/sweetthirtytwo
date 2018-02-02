@@ -26,14 +26,14 @@ const businessLogic = {
         return business;
       }));
   },
-  getBusiness(root, { jwt }, context) {
+  getBusiness(root, args, context) {
     return getAuthenticatedUser(context)
       .then(currUser => Business.findOne({ user: currUser._id.toString() })
         .then((business) => {
-          if (currUser.business.toString() === business._id.toString()) {
+          if (business) {
             return business;
           }
-          return Promise.reject(Error('This user is cannot access this business.'));
+          return Promise.reject(Error('No business found.'));
         }));
   },
 };
