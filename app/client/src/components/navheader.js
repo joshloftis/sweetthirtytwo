@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import PropTypes from 'prop-types';
 import '../css/navheader.css';
 
@@ -9,7 +10,7 @@ const NavHeader = props => (
       <div className="d-flex justify-content-end" id="navbarSupportedContent">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <a className="nav-link">+ New Contract</a>
+            <Link to="/add_contractee">+ New Contract</Link>
           </li>
         </ul>
       </div>
