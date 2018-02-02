@@ -9,11 +9,11 @@ h3 {
   margin-bottom: 20px;
 }
 
-.sideBar {
-  height: 100vh;
-}
-
 .no-contracts {
   margin-left: 15px;
   color: black;
+}
+
+.all-content {
+  min-height: 100% !important;
 }

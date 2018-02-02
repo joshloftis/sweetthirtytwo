@@ -1,15 +1,15 @@
 .container {
-  height: 100vh;
+  min-height: 100% !important;
 }
 
 .main-form-area {
-  height: 100vh;
+  min-height: 100% !important;
 }
 
 .contractee-form {
   background: white;
   padding: 30px;
-  height: 100vh;
+  height: 100%;
   padding-top: 90px;
   max-width: 900px;
 }
@@ -48,4 +48,21 @@ label {
 
 .add-contractee-form {
   margin-bottom: 50px;
+}
+
+.sideBar2 {
+  min-height:100% !important;
+}
+
+::placeholder {
+  color: #949494 !important;
+  opacity: 0.4 !important; 
+}
+
+:-ms-input-placeholder { 
+  color: #949494 !important;
+}
+
+::-ms-input-placeholder { 
+  color: #949494 !important;
 }

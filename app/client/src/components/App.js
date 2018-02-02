@@ -53,7 +53,7 @@ class App extends React.Component {
     return (
       <div>
         <NavHeader />
-        <div className="row">
+        <div className="row all-content">
           <div className="sideBar col-3">
             {sidebar}
           </div>

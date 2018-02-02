@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import NavHeader from './NavHeader';
 import SideBar from './SideBar';
+import { formatPrice } from '../helpers';
 import '../css/addcontractee.css';
 
 class AddContractee extends React.Component {
@@ -50,6 +51,39 @@ class AddContractee extends React.Component {
             range: this.state.range,
             terms: this.state.terms,
           },
+          refetchQueries: [{
+            query: gql`
+            query GetUser {
+              getUser {
+                _id
+                firstName
+                lastName
+                business {
+                  _id
+                  logo
+                  name
+                  contracts {
+                    _id
+                    first_name
+                    last_name
+                    email
+                    address
+                    completed
+                    status
+                    paymentContract {
+                      total
+                      fees
+                      down_payment
+                      insurance
+                      range
+                      monthly_payment
+                      terms
+                    }
+                  }
+                }
+              }
+            }`,
+          }],
         }).then(paymentContract => this.setState({ fireRedirect: true }));
       }
       return Promise.reject(Error('Contractee was not added, so payment terms cannot be added.'));
@@ -83,8 +117,8 @@ class AddContractee extends React.Component {
     return (
       <div>
         <NavHeader />
-        <div className="row">
-          <div className="sideBar col-3">
+        <div className="row all-content">
+          <div className="sideBar2 col-3">
             {sidebar}
           </div>
           <div className="col-9">
@@ -233,6 +267,21 @@ class AddContractee extends React.Component {
                     />
                     <label htmlFor="range">Range</label>
                   </div>
+                  <div className="form-group col-4">
+                    <input
+                      id="terms"
+                      type="text"
+                      className="form-control"
+                      placeholder="Enter payment terms"
+                      required="required"
+                      name="terms"
+                      value={this.state.terms}
+                      onChange={this.handleInputChange}
+                    />
+                    <label htmlFor="terms">Terms</label>
+                  </div>
+                </div>
+                <div className="form-row">
                   <div className="form-group col-4">
                     <input
                       id="terms"

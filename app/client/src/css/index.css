@@ -1,5 +1,16 @@
-body {
+html, body {
   background: #F6F6F6;
   overflow-x: hidden;
   font-family: 'Open Sans', sans-serif;
+  min-height: 100% !important;
+}
+
+#root {
+  min-height: 100% !important;
+  padding: 0;
+  margin: 0;
+}
+
+#root>div {
+  min-height: 100% !important;
 }

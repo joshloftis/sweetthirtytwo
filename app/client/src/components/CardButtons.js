@@ -17,9 +17,41 @@ class CardButtons extends React.Component {
       variables: {
         contracteeId: this.props.contract_id.contract_id,
       },
+      refetchQueries: [{
+        query: gql`
+        query GetUser {
+          getUser {
+            _id
+            firstName
+            lastName
+            business {
+              _id
+              logo
+              name
+              contracts {
+                _id
+                first_name
+                last_name
+                email
+                address
+                completed
+                status
+                paymentContract {
+                  total
+                  fees
+                  down_payment
+                  insurance
+                  range
+                  monthly_payment
+                  terms
+                }
+              }
+            }
+          }
+        }`,
+      }],
     }).then((message) => {
       console.log(message);
-      this.props.history.push('/suite32');
     }).catch(err => err);
   }
 
