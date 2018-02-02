@@ -9,8 +9,10 @@
   margin-left: 30px;
   margin-top: 40px;
   cursor: pointer;
+  transition: 0.5s;
 }
 
 .contract-button:hover {
   background: #B7DDFF;
+  transform: scale(1.05);
 }

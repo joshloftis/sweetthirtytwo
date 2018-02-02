@@ -117,9 +117,9 @@ const contracteeLogic = {
         return Promise.reject(Error('You cannot get contracts for this business!'));
       });
   },
-  deleteContract(root, { contracteeId, userId }, context) {
+  deleteContract(root, { contracteeId }, context) {
     return getAuthenticatedUser(context)
-      .then(currUser => User.findById(userId)
+      .then(currUser => User.findById(currUser._id.toString())
         .then((user) => {
           if (currUser.business.toString() === user.business.toString()) {
             return Contractee.remove({ _id: contracteeId })
