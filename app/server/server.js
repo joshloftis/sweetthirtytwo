@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const jwtExp = require('express-jwt');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const router = require("./google_authentication");
 const { graphqlExpress, graphiqlExpress } = require('apollo-server-express');
 
 const morgan = require('morgan');
@@ -17,6 +18,8 @@ const schema = require('./graphql/schema');
 const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(morgan('dev'));
+
+app.use("/google", router);
 
 app.use(cors({
   origin: 'http://localhost:3000',
