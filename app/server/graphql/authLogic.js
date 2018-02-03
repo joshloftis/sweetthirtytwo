@@ -147,22 +147,22 @@ const contracteeLogic = {
           if (user) {
             return Contractee.findById(contractee)
               .then((foundContract) => {
-                if (first_name !== undefined) {
+                if (first_name !== undefined && first_name !== null && first_name !== '') {
                   foundContract.first_name = first_name;
                 }
-                if (last_name !== undefined) {
+                if (last_name !== undefined && last_name !== null && last_name !== '') {
                   foundContract.last_name = last_name;
                 }
-                if (email !== undefined) {
+                if (email !== undefined && email !== null && email !== '') {
                   foundContract.email = email;
                 }
-                if (address !== undefined) {
+                if (address !== undefined && address !== null && address !== '') {
                   foundContract.address = address;
                 }
-                if (completed !== undefined) {
+                if (completed !== undefined && completed !== null && completed !== '') {
                   foundContract.completed = completed;
                 }
-                if (status !== undefined) {
+                if (status !== undefined && status !== null && status !== '') {
                   foundContract.status = status;
                 }
                 return foundContract.save();
@@ -225,22 +225,22 @@ const paymentContractLogic = {
           if (user) {
             return PaymentContract.findOne({ contractee })
               .then((paymentContract) => {
-                if (total !== undefined || total === null) {
+                if (!total && total !== null) {
                   paymentContract.total = total;
                 }
-                if (fees !== undefined || fees === null) {
+                if (!fees && fees !== null) {
                   paymentContract.fees = fees;
                 }
-                if (down_payment !== undefined || down_payment === null) {
+                if (!down_payment && down_payment !== null) {
                   paymentContract.down_payment = down_payment;
                 }
-                if (insurance !== undefined || insurance === null) {
+                if (!insurance && insurance !== null) {
                   paymentContract.insurance = insurance;
                 }
-                if (range !== undefined || range === null) {
+                if (!range && range !== null) {
                   paymentContract.range = range;
                 }
-                if (terms !== undefined || terms === null) {
+                if (!terms && terms !== null) {
                   paymentContract.terms = terms;
                 }
                 paymentContract.getMonthlyPayment();
