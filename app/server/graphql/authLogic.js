@@ -5,11 +5,9 @@ const {
 } = require('../models/index');
 
 const getAuthenticatedUser = context => context.user.then((user) => {
-  console.log(context);
   if (!user) {
     return Promise.reject(Error('Unauthorized'));
   }
-  console.log(`THIS IS THE USER: ${user}`);
   return user;
 });
 
@@ -149,22 +147,22 @@ const contracteeLogic = {
           if (user) {
             return Contractee.findById(contractee)
               .then((foundContract) => {
-                if (first_name !== undefined || first_name === '') {
+                if (first_name !== undefined) {
                   foundContract.first_name = first_name;
                 }
-                if (last_name !== undefined || ast_name === '') {
+                if (last_name !== undefined) {
                   foundContract.last_name = last_name;
                 }
-                if (email !== undefined || email === '') {
+                if (email !== undefined) {
                   foundContract.email = email;
                 }
-                if (address !== undefined || address === '') {
+                if (address !== undefined) {
                   foundContract.address = address;
                 }
-                if (completed !== undefined || completed === '') {
+                if (completed !== undefined) {
                   foundContract.completed = completed;
                 }
-                if (status !== undefined || status === '') {
+                if (status !== undefined) {
                   foundContract.status = status;
                 }
                 return foundContract.save();
@@ -227,22 +225,22 @@ const paymentContractLogic = {
           if (user) {
             return PaymentContract.findOne({ contractee })
               .then((paymentContract) => {
-                if (total !== undefined || total === '') {
+                if (total !== undefined || total === null) {
                   paymentContract.total = total;
                 }
-                if (fees !== undefined || fees === '') {
+                if (fees !== undefined || fees === null) {
                   paymentContract.fees = fees;
                 }
-                if (down_payment !== undefined || down_payment === '') {
+                if (down_payment !== undefined || down_payment === null) {
                   paymentContract.down_payment = down_payment;
                 }
-                if (insurance !== undefined || insurance === '') {
+                if (insurance !== undefined || insurance === null) {
                   paymentContract.insurance = insurance;
                 }
-                if (range !== undefined || range === '') {
+                if (range !== undefined || range === null) {
                   paymentContract.range = range;
                 }
-                if (terms !== undefined || terms === '') {
+                if (terms !== undefined || terms === null) {
                   paymentContract.terms = terms;
                 }
                 paymentContract.getMonthlyPayment();

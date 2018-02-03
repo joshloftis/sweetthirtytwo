@@ -51,7 +51,7 @@ class Contract extends React.Component {
         role: 'client',
       },
     }).then((user) => {
-      console.log('client added', user.data.contract);
+      console.log('client added');
     }).catch((error) => {
       console.log('No user added because of an error:', error);
     });

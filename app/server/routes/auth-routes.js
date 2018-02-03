@@ -32,7 +32,6 @@ authRouter.post('/sign-up', (req, res, next) => User.findOne({ username: req.bod
                 username: newUser.username,
               },
             }, process.env.JWT_SECRET);
-            console.log(jwtAuthToken);
             res.cookie('jwtAuthToken', jwtAuthToken, {
               secure: process.env.NODE_ENV === 'production',
               signed: true,

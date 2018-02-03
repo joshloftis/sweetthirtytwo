@@ -42,7 +42,6 @@ class AddBusiness extends React.Component {
 
   render() {
     let add = null;
-    console.log(this.props.data.getBusiness);
     if (this.props.data.loading) {
       add = <h3>Loading...</h3>;
     } else if (this.props.data.getBusiness) {

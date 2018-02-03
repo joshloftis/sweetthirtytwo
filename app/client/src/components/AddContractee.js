@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect, withRouter, Link } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
@@ -123,6 +123,7 @@ class AddContractee extends React.Component {
           <div className="col-9">
             <div className="container contractee-form">
               <form className="mx-auto add-contractee-form">
+                <Link to="/suite32">Back</Link>
                 <hr className="form-hr mx-auto" />
                 <h2 className="form-header text-center"><span className="header-background">Contract Information</span></h2>
                 <hr className="form-hr mx-auto" />

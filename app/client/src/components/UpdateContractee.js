@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, withRouter } from 'react-router-dom';
+import { Redirect, withRouter, Link } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
@@ -116,6 +116,7 @@ class AddContractee extends React.Component {
       );
       form = (
         <form className="mx-auto add-contractee-form">
+          <Link to="/suite32">Back</Link>
           <hr className="form-hr mx-auto" />
           <h2 className="form-header text-center"><span className="header-background">Contract Information</span></h2>
           <hr className="form-hr mx-auto" />
@@ -299,8 +300,8 @@ class AddContractee extends React.Component {
 }
 
 const UpdateContracteeMutation = gql`
- mutation updateContract($contractee: String!, $first_name: String, $last_name: String, $email: String, $address: String) {
-  updateContract(contractee: $contractee, first_name: $first_name, last_name: $last_name, email: $email, address: $address) {
+ mutation updateContract($contractee: String!, $first_name: String, $last_name: String, $email: String, $address: String,) {
+   updateContract(contractee: $contractee, first_name: $first_name, last_name: $last_name, email: $email, address: $address) {
         _id
         first_name
         last_name
@@ -311,8 +312,8 @@ const UpdateContracteeMutation = gql`
   `;
 
 const UpdatePaymentContractMutation = gql`
-    mutation updatePaymentContract($contractee: String!, $total: Float, $fees: Float, $insurance: Float, $down_payment: Float, $range: Float, $terms: String) {
-      updatePaymentContract(contractee: $contractee, total: $total, fees: $fees, insurance: $insurance, down_payment: $down_payment, range: $range, terms: $terms) {
+  mutation updatePaymentContract($contractee: String!, $total: Float, $fees: Float, $down_payment: Float, $insurance: Float, $range: Float, $terms: String) {
+    updatePaymentContract(contractee: $contractee, total: $total, fees: $fees, down_payment: $down_payment, insurance: $insurance, range: $range, terms: $terms) {
         _id
       }
     }
