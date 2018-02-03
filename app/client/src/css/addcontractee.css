@@ -53,16 +53,3 @@ label {
 .sideBar2 {
   min-height:100% !important;
 }
-
-::placeholder {
-  color: #949494 !important;
-  opacity: 0.4 !important; 
-}
-
-:-ms-input-placeholder { 
-  color: #949494 !important;
-}
-
-::-ms-input-placeholder { 
-  color: #949494 !important;
-}

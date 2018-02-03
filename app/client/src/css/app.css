@@ -2,11 +2,12 @@
   margin-top: 64px;
 }
 
-h3 {
+.contracts-header {
   font-size: 14px;
   color: #FF386B;
   margin-top: 22px;
   margin-bottom: 20px;
+  margin-left:15px;
 }
 
 .no-contracts {
@@ -16,4 +17,32 @@ h3 {
 
 .all-content {
   min-height: 100% !important;
+}
+
+.sideBar {
+  min-height: 100% !important;
+}
+
+.nav-link {
+  margin-top: 19px;
+  margin-right: 40px;
+  text-decoration: none;
+  font-size: 11px;
+  color: #38A3FF;
+  transition: 0.5s;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.add-contract-link {
+  position: absolute;
+  padding: 4px;
+  border-radius: 4px;
+  right: 20px;
+}
+
+.add-contract-link:hover {
+  background: white;
 }

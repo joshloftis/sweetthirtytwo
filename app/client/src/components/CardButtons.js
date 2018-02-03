@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 // import PropTypes from 'prop-types';
@@ -8,10 +9,10 @@ class CardButtons extends React.Component {
   constructor(props) {
     super(props);
 
-    this.onClick = this.onClick.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
-  onClick(e) {
+  onDelete(e) {
     e.preventDefault();
     this.props.mutate({
       variables: {
@@ -58,8 +59,12 @@ class CardButtons extends React.Component {
   render() {
     return (
       <div className="mx-auto">
-        <button className="contract-button" >Review</button>
-        <button className="contract-button" onClick={this.onClick}>Delete</button>
+        <Link to={`/update_contractee/${this.props.contract_id.contract_id}`}>
+          <button className="contract-button">
+            Review
+          </button>
+        </Link>
+        <button className="contract-button" onClick={this.onDelete}>Delete</button>
       </div>
     );
   }

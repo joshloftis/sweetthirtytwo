@@ -1,11 +1,10 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { graphql, compose } from 'react-apollo';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import NavHeader from './NavHeader';
 import SideBar from './SideBar';
-import { formatPrice } from '../helpers';
 import '../css/addcontractee.css';
 
 class AddContractee extends React.Component {
@@ -281,21 +280,6 @@ class AddContractee extends React.Component {
                     <label htmlFor="terms">Terms</label>
                   </div>
                 </div>
-                <div className="form-row">
-                  <div className="form-group col-4">
-                    <input
-                      id="terms"
-                      type="text"
-                      className="form-control"
-                      placeholder="Enter payment terms"
-                      required="required"
-                      name="terms"
-                      value={this.state.terms}
-                      onChange={this.handleInputChange}
-                    />
-                    <label htmlFor="terms">Terms</label>
-                  </div>
-                </div>
                 <button type="submit" className="login-button" onClick={this.onClick}>Submit</button>
               </form>
               {fireRedirect && (
@@ -346,8 +330,8 @@ AddContractee.propTypes = {
 };
 
 
-export default compose(
+export default withRouter(compose(
   graphql(AddContracteeMutation, { name: 'addContracteeMutation' }),
   graphql(AddPaymentContractMutation, { name: 'addPaymentContractMutation' }),
   graphql(GetUser),
-)(AddContractee);
+)(AddContractee));

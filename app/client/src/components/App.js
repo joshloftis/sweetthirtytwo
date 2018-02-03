@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
@@ -13,7 +13,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
     };
   }
 
@@ -58,7 +57,10 @@ class App extends React.Component {
             {sidebar}
           </div>
           <div className="main-card-area col-9">
-            <h3>Contracts</h3>
+            <div className="row">
+              <h3 className="contracts-header">Contracts</h3>
+              <Link to="/add_contractee"><span className="nav-link add-contract-link">+ New Contract</span></Link>
+            </div>
             <div className="row">
               {cards}
             </div>

@@ -107,10 +107,10 @@ const contracteeLogic = {
         return Promise.reject(Error('You cannot get contracts for this business!'));
       });
   },
-  getBizContract(root, { businessId, contractId }, context) {
+  getBizContract(root, { contractId }, context) {
     return getAuthenticatedUser(context)
       .then((currUser) => {
-        if (currUser.business.toString() === businessId) {
+        if (currUser) {
           return Contractee.findOne({ _id: contractId })
             .then(contract => contract);
         }
@@ -141,30 +141,30 @@ const contracteeLogic = {
         }));
   },
   updateContract(root, {
-    userId, contractee, first_name, last_name, email, address, completed, status,
+    contractee, first_name, last_name, email, address, completed, status,
   }, context) {
     return getAuthenticatedUser(context)
-      .then(currUser => User.findById(userId)
+      .then(currUser => User.findById(currUser._id.toString())
         .then((user) => {
-          if (currUser.business.toString() === user.business.toString()) {
+          if (user) {
             return Contractee.findById(contractee)
               .then((foundContract) => {
-                if (first_name !== undefined) {
+                if (first_name !== undefined || first_name === '') {
                   foundContract.first_name = first_name;
                 }
-                if (last_name !== undefined) {
+                if (last_name !== undefined || ast_name === '') {
                   foundContract.last_name = last_name;
                 }
-                if (email !== undefined) {
+                if (email !== undefined || email === '') {
                   foundContract.email = email;
                 }
-                if (address !== undefined) {
+                if (address !== undefined || address === '') {
                   foundContract.address = address;
                 }
-                if (completed !== undefined) {
+                if (completed !== undefined || completed === '') {
                   foundContract.completed = completed;
                 }
-                if (status !== undefined) {
+                if (status !== undefined || status === '') {
                   foundContract.status = status;
                 }
                 return foundContract.save();
@@ -219,30 +219,30 @@ const paymentContractLogic = {
         }));
   },
   updatePaymentContract(root, {
-    userId, contractee, total, fees, down_payment, insurance, range, terms,
+    contractee, total, fees, down_payment, insurance, range, terms,
   }, context) {
     return getAuthenticatedUser(context)
-      .then(currUser => User.findById(userId)
+      .then(currUser => User.findById(currUser._id.toString())
         .then((user) => {
-          if (currUser.business.toString() === user.business.toString()) {
+          if (user) {
             return PaymentContract.findOne({ contractee })
               .then((paymentContract) => {
-                if (total !== undefined) {
+                if (total !== undefined || total === '') {
                   paymentContract.total = total;
                 }
-                if (fees !== undefined) {
+                if (fees !== undefined || fees === '') {
                   paymentContract.fees = fees;
                 }
-                if (down_payment !== undefined) {
+                if (down_payment !== undefined || down_payment === '') {
                   paymentContract.down_payment = down_payment;
                 }
-                if (insurance !== undefined) {
+                if (insurance !== undefined || insurance === '') {
                   paymentContract.insurance = insurance;
                 }
-                if (range !== undefined) {
+                if (range !== undefined || range === '') {
                   paymentContract.range = range;
                 }
-                if (terms !== undefined) {
+                if (terms !== undefined || terms === '') {
                   paymentContract.terms = terms;
                 }
                 paymentContract.getMonthlyPayment();
