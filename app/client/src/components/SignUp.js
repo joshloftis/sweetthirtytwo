@@ -26,7 +26,6 @@ class SignUp extends React.Component {
       password: this.state.password,
       role: 'owner',
     }).then((newUser) => {
-      console.log(newUser);
       if (newUser) {
         this.props.history.push('/add_business');
       }
